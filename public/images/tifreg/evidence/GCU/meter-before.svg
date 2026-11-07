@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6b7280"/>
+      <stop offset="60%" stop-color="#454c54"/>
+      <stop offset="100%" stop-color="#282e34"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4f6f8"/>
+      <stop offset="100%" stop-color="#cfd6dc"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+    </filter>
+    <pattern id="demo" width="150" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(-22)">
+      <text x="0" y="55" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#e11d2a" fill-opacity="0.42" letter-spacing="2">DEMO</text>
+    </pattern>
+  </defs>
+
+  <rect width="480" height="360" fill="url(#bg)"/>
+
+  <!-- meter box -->
+  <rect x="130" y="90" width="220" height="180" rx="10" fill="url(#box)" stroke="#20262c" stroke-width="3"/>
+  <rect x="150" y="112" width="180" height="60" rx="4" fill="#0d1a12" stroke="#161c22" stroke-width="2"/>
+  <text x="240" y="153" font-family="monospace" font-size="30" font-weight="700" fill="#4ade80" text-anchor="middle">019905</text>
+
+  <circle cx="165" cy="205" r="9" fill="#ef4444"/>
+  <text x="182" y="210" font-family="Arial" font-size="12" fill="#333">kWh Prabayar</text>
+  <rect x="150" y="228" width="180" height="8" rx="2" fill="#9aa3ab"/>
+  <rect x="150" y="244" width="130" height="8" rx="2" fill="#9aa3ab"/>
+
+  <text x="240" y="300" font-family="Arial" font-size="13" fill="#e5e7eb" text-anchor="middle">MTR-88519 · No. Token: -</text>
+
+  <rect width="480" height="360" fill="url(#vignette)"/>
+  <rect width="480" height="360" filter="url(#grain)"/>
+  <rect width="480" height="360" fill="url(#demo)"/>
+
+  <text x="14" y="344" font-family="monospace" font-size="14" fill="#fff" fill-opacity="0.85">MTR-88519 · 2026-08-29 08:10 · BEFORE</text>
+</svg>

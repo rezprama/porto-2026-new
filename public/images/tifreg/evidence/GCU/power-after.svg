@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5b6b7a"/>
+      <stop offset="55%" stop-color="#3d4a56"/>
+      <stop offset="100%" stop-color="#242e37"/>
+    </linearGradient>
+    <linearGradient id="cabinet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8b95a0"/>
+      <stop offset="45%" stop-color="#5f6a75"/>
+      <stop offset="100%" stop-color="#3a434c"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+    </filter>
+    <pattern id="demo" width="150" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(-22)">
+      <text x="0" y="55" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#e11d2a" fill-opacity="0.42" letter-spacing="2">DEMO</text>
+    </pattern>
+  </defs>
+
+  <rect width="480" height="360" fill="url(#bg)"/>
+  <rect x="0" y="300" width="480" height="60" fill="#1b232a"/>
+
+  <!-- cabinet -->
+  <rect x="150" y="70" width="180" height="230" rx="8" fill="url(#cabinet)" stroke="#20262c" stroke-width="3"/>
+  <rect x="160" y="82" width="160" height="14" rx="3" fill="#2c343b" opacity="0.7"/>
+  <rect x="160" y="104" width="160" height="10" rx="2" fill="#20262c" opacity="0.6"/>
+  <rect x="160" y="122" width="160" height="10" rx="2" fill="#20262c" opacity="0.6"/>
+  <circle cx="168" cy="90" r="3.5" fill="#12161a"/>
+  <circle cx="312" cy="90" r="3.5" fill="#12161a"/>
+
+  <!-- gauge (normal: needle in green zone) -->
+  <circle cx="240" cy="190" r="42" fill="#eef1f3" stroke="#20262c" stroke-width="4"/>
+  <path d="M 202 190 A 38 38 0 0 1 278 190" fill="none" stroke="#22c55e" stroke-width="7"/>
+  <path d="M 262 158 A 38 38 0 0 1 278 190" fill="none" stroke="#f59e0b" stroke-width="7"/>
+  <path d="M 270 174 A 38 38 0 0 1 278 190" fill="none" stroke="#ef4444" stroke-width="7"/>
+  <line x1="240" y1="190" x2="210" y2="178" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="240" cy="190" r="5" fill="#20262c"/>
+
+  <!-- LED indicator: green / normal -->
+  <circle cx="300" cy="250" r="9" fill="#22c55e"/>
+  <rect x="170" y="240" width="60" height="8" rx="2" fill="#20262c" opacity="0.5"/>
+  <rect x="170" y="256" width="60" height="8" rx="2" fill="#20262c" opacity="0.5"/>
+
+  <!-- cables -->
+  <path d="M 150 290 C 100 310 60 300 20 320" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 330 290 C 380 310 420 300 460 320" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+
+  <rect width="480" height="360" fill="url(#vignette)"/>
+  <rect width="480" height="360" filter="url(#grain)"/>
+  <rect width="480" height="360" fill="url(#demo)"/>
+
+  <text x="14" y="344" font-family="monospace" font-size="14" fill="#fff" fill-opacity="0.85">OLT-BPN-SPG-03 · 2026-08-19 14:05 · AFTER</text>
+</svg>

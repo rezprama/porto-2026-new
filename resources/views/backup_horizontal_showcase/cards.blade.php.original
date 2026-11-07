@@ -1,0 +1,76 @@
+@verbatim
+<section id="project">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num mono">04</span>
+      <div>
+        <h2>{{ t.projSection }}</h2>
+        <p>{{ t.projSectionSub }}</p>
+      </div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal" :class="i%2===0 ? 'from-right' : 'from-left'" v-for="(p,i) in projects" :key="p.id">
+        <div class="proj-card-top">
+          <div class="proj-logo-box" v-if="p.logo">
+            <img :src="p.logo" :alt="t.proj[p.id].title" class="proj-logo-img" />
+          </div>
+          <span class="badge" v-else>{{ t.proj[p.id].badge }}</span>
+          <div>
+            <h3>{{ t.proj[p.id].title }}</h3>
+            <div class="sub">{{ t.proj[p.id].sub }}</div>
+          </div>
+        </div>
+        <p class="proj-card-desc">{{ t.proj[p.id].desc }}</p>
+        <div class="chips">
+          <span class="sk" v-for="tag in p.tags" :key="tag">{{ tag }}</span>
+        </div>
+        <a v-if="!p.comingSoon" class="btn primary" :href="p.url" target="_blank" rel="noopener">
+          {{ t.openProject }}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <button v-else class="btn disabled" disabled type="button" aria-disabled="true">
+          {{ t.comingSoon }}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="proj-note">{{ t.projNote }}</p>
+  </div>
+</section>
+@endverbatim
+
+<script>
+window.PROJECTS = [
+  {id:"tifreg", url:"{{ route('project.tifreg.login') }}", logo:"/images/tifreg/logo.png", tags:["Laravel 12","Vue 3","Inertia","MySQL","Redis"], comingSoon: false},
+  {id:"dalapareg", url:"{{ route('project.dalapareg.login') }}", logo:"/images/dalapa/logo.png", tags:["Laravel 10","MySQL","MongoDB","Redis","Bootstrap","Leaflet JS"], comingSoon: false},
+  {id:"tomman", url:"http://tomman.test", logo:"/images/tomman/logo.svg", tags:["Laravel","MySQL","Telegram Bot","Bootstrap","REST API"], comingSoon: true},
+];
+Object.assign(I18N.en, {
+  projSection:"Project List", projSectionSub:"Internal platforms I've built and maintained",
+  openProject:"View project",
+  comingSoon:"Coming Soon",
+  projNote:"Some are in-repo UI miniatures with dummy data; others are live demos reachable on the company network. Opens in a new tab.",
+  proj:{
+    tifreg:{badge:"REG", title:"DALAPA Regional Platform", sub:"Regional operations suite",
+      desc:"One system for regional telecom teams: infrastructure mapping, QE project & BOQ approval workflows, budget allocation, and material stock-opname — with LDAP/2FA auth and fine-grained access control."},
+    dalapareg:{badge:"DLP", title:"DALAPA Regional (Legacy App)", sub:"Regional telecom operations suite",
+      desc:"Monolithic regional operational suite built for Telkom Regional: E2E OLT-ODP mapping, assurance ticket & material reconciliation, QE capex & BOQ approval, NTE stock management, and GIS network mapping (Peta Alpro)."},
+    tomman:{badge:"TMM", title:"TOMMAN Operational Suite", sub:"Field operations & assurance system",
+      desc:"Central operational platform for regional telecom operations: ticketing, technician dispatching, PSB/assurance tracking, and automated Telegram bot integration."},
+  },
+});
+Object.assign(I18N.id, {
+  projSection:"Daftar Proyek", projSectionSub:"Platform internal yang saya bangun & kelola",
+  openProject:"Lihat proyek",
+  comingSoon:"Coming Soon",
+  projNote:"Sebagian berupa miniatur UI di repo ini dengan data dummy; sebagian lagi demo langsung yang bisa diakses di jaringan perusahaan. Tautan terbuka di tab baru.",
+  proj:{
+    tifreg:{badge:"REG", title:"DALAPA Regional Platform", sub:"Suite operasional regional",
+      desc:"Satu sistem untuk tim regional telekomunikasi: pemetaan infrastruktur, alur persetujuan proyek QE & BOQ, alokasi anggaran, dan stock opname material — dengan autentikasi LDAP/2FA dan kontrol akses granular."},
+    dalapareg:{badge:"DLP", title:"DALAPA Regional (Legacy App)", sub:"Suite operasional telekomunikasi regional",
+      desc:"Sistem operasional terpadu Telkom Regional: rekonsiliasi material & tiket assurance, pemetaan E2E OLT-ODP, alur proyek QE & persetujuan BOQ, stock opname NTE, serta GIS infrastruktur jaringan (Peta Alpro)."},
+    tomman:{badge:"TMM", title:"TOMMAN Operational Suite", sub:"Sistem operasional lapangan & assurance",
+      desc:"Platform pemantauan dan pendukung keputusan utama untuk operasi telekomunikasi regional: manajemen tiket, dispatch teknisi, monitoring progres PSB/assurance, dan bot otomatisasi Telegram."},
+  },
+});
+</script>

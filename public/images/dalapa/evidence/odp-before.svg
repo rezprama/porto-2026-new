@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8fa4b5"/>
+      <stop offset="60%" stop-color="#6d8497"/>
+      <stop offset="100%" stop-color="#4a5c6b"/>
+    </linearGradient>
+    <linearGradient id="pole" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b9bfc4"/>
+      <stop offset="45%" stop-color="#8b9399"/>
+      <stop offset="100%" stop-color="#5d666d"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="45%" r="75%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
+    </radialGradient>
+    <pattern id="demo" width="150" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(-22)">
+      <text x="0" y="55" font-family="Arial, sans-serif" font-size="34" font-weight="800" fill="#e11d2a" fill-opacity="0.4" letter-spacing="2">DEMO</text>
+    </pattern>
+  </defs>
+
+  <rect width="480" height="360" fill="url(#sky)"/>
+  <rect x="0" y="292" width="480" height="68" fill="#4f4438"/>
+  <rect x="0" y="292" width="480" height="8" fill="#3d3429"/>
+
+  <!-- pole -->
+  <rect x="222" y="40" width="30" height="256" fill="url(#pole)" stroke="#4a5158" stroke-width="1.5"/>
+  <rect x="222" y="96" width="30" height="5" fill="#6b747b"/>
+  <rect x="222" y="168" width="30" height="5" fill="#6b747b"/>
+
+  <!-- ODP box, dented and crooked -->
+  <g transform="rotate(-7 260 150)">
+    <rect x="200" y="112" width="120" height="84" rx="5" fill="#d7d9d4" stroke="#7d8179" stroke-width="2"/>
+    <rect x="200" y="112" width="120" height="16" rx="5" fill="#b9bdb6"/>
+    <rect x="210" y="136" width="100" height="48" rx="3" fill="#eceeea" stroke="#9aa096"/>
+    <path d="M216 150h88M216 162h72M216 174h94" stroke="#9aa096" stroke-width="2"/>
+    <path d="M246 118 L268 132 L252 142" fill="none" stroke="#6b6f66" stroke-width="2.5"/>
+  </g>
+
+  <!-- messy drop cables -->
+  <path d="M200 160 C150 190 120 150 60 210" fill="none" stroke="#20252b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M200 170 C140 230 110 200 40 260" fill="none" stroke="#20252b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M320 168 C380 150 400 220 470 190" fill="none" stroke="#20252b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M320 178 C370 240 420 210 462 268" fill="none" stroke="#20252b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M250 196 C246 240 268 250 258 292" fill="none" stroke="#20252b" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="180" cy="206" r="9" fill="none" stroke="#20252b" stroke-width="3"/>
+  <circle cx="352" cy="214" r="11" fill="none" stroke="#20252b" stroke-width="3"/>
+
+  <rect width="480" height="360" fill="url(#vig)"/>
+  <rect width="480" height="360" fill="url(#demo)"/>
+
+  <rect x="0" y="322" width="480" height="38" fill="#000" fill-opacity="0.55"/>
+  <text x="14" y="347" font-family="Arial, sans-serif" font-size="15" fill="#fff" font-weight="700">BEFORE</text>
+  <text x="466" y="347" font-family="Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="end">ODP-BPN-FR/014 · 2026-09-11 08:24 WITA</text>
+</svg>
