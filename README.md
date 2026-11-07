@@ -52,8 +52,8 @@ This web portfolio showcases real enterprise architectures and in-repo interacti
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/rezprama/porto-2026.git
-   cd porto-2026
+   git clone https://github.com/rezprama/porto-2026-new.git
+   cd porto-2026-new
    ```
 
 2. **Install PHP & JS dependencies:**
