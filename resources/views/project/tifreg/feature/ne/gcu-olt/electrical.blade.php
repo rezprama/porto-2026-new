@@ -22,14 +22,14 @@
   </div>
 
   <div class="stack">
-    <div class="card">
+    <div class="card" id="elFilterCard">
       <div class="card-body">
-        <div class="row3">
+        <div class="row3" id="elFilterRowRegion">
           <div class="field"><label>Area</label><select id="fArea"><option>PAMASUKA</option></select></div>
           <div class="field"><label>Regional</label><select id="fRegional"><option value="">Semua</option><option>KALIMANTAN</option><option>SULAWESI</option><option>KTI</option></select></div>
           <div class="field"><label>District</label><select id="fDistrict"><option value="">Semua</option><option>District Balikpapan</option><option>District Samarinda</option><option>District Makassar</option></select></div>
         </div>
-        <div class="row3">
+        <div class="row3" id="elFilterRowPln">
           <div class="field"><label data-i18n="fType">Type</label><select id="fType"><option value="">ALL</option><option>INDOOR</option><option>OUTDOOR</option></select></div>
           <div class="field"><label data-i18n="fPln">Status PLN</label><select id="fPln"><option value="">ALL</option><option>Pascabayar</option><option>Prabayar</option></select></div>
           <div class="field" style="align-self:end"><button class="btn-primary" id="searchBtn" style="width:100%" data-i18n="search">Cari</button></div>
@@ -37,13 +37,13 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="table-toolbar">
+    <div class="card" id="elTableCard">
+      <div class="table-toolbar" id="elTableToolbar">
         <select id="perPage"><option value="10">10 / halaman</option><option value="25">25 / halaman</option></select>
         <input type="text" id="searchInput" data-i18n-ph="searchPh" placeholder="Cari hostname / STO..." />
       </div>
       <div class="table-scroll">
-        <table>
+        <table id="elTable">
           <thead>
             <tr>
               <th data-sort="hostname">Hostname<span class="arr"></span></th>
@@ -259,6 +259,64 @@
   function onLangChange(){ renderTable(); }
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var gcuElectricalTour = {
+    id: 'tifreg-gcu-electrical',
+    steps: [
+      {
+        target: '#elFilterRowRegion',
+        pos: 'bottom',
+        title: { id: 'Filter Wilayah & Regional', en: 'Territory & Region Filter' },
+        desc: {
+          id: 'Saring pantauan data kelistrikan OLT berdasarkan hierarki Area (PAMASUKA), Regional, hingga Distrik kerja.',
+          en: 'Filter OLT electrical data by Area (PAMASUKA), Regional territories, down to operational Districts.'
+        }
+      },
+      {
+        target: '#elFilterRowPln',
+        pos: 'bottom',
+        title: { id: 'Filter Tipe & Jenis Meteran PLN', en: 'Type & PLN Metering Status' },
+        desc: {
+          id: 'Saring berdasarkan peletakan OLT (INDOOR / OUTDOOR) dan sistem kelistrikan PLN: Pascabayar atau Prabayar (Token).',
+          en: 'Filter by OLT placement (INDOOR / OUTDOOR) and utility status: Postpaid or Prepaid.'
+        }
+      },
+      {
+        target: '#elTableToolbar',
+        pos: 'bottom',
+        title: { id: 'Toolbar Pencarian Cepat', en: 'Quick Search Toolbar' },
+        desc: {
+          id: 'Gunakan input pencarian untuk menemukan hostname OLT atau nama STO tertentu secara cepat, serta tentukan jumlah baris per halaman.',
+          en: 'Search directly by hostname or STO name, and toggle row display limits per page.'
+        }
+      },
+      {
+        target: '#elTable thead',
+        pos: 'bottom',
+        title: { id: 'Data Parameter Kelistrikan', en: 'Electrical Parameter Data' },
+        desc: {
+          id: 'Menyajikan informasi krusial daya: ID PLN Pelanggan, No. Meteran, Rekaman kWh Terakhir, serta Tanggal Pembaruan kWh.',
+          en: 'Presents power metrics: PLN Customer ID, Meter Number, Last Recorded kWh, and update timestamps.'
+        }
+      },
+      {
+        target: '#tbody tr:first-child td:last-child',
+        pos: 'left',
+        title: { id: 'Aksi Detail & Lokasi Peta', en: 'Details & Location Actions' },
+        desc: {
+          id: 'Klik tombol <b>Detail</b> untuk melihat riwayat pencatatan kWh & foto meteran, atau klik <b>Lihat Peta</b> untuk cek koordinat fisik OLT.',
+          en: 'Click <b>Detail</b> to view historical meter logs and photo evidence, or <b>Lihat Peta</b> to view GPS coordinates.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(gcuElectricalTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

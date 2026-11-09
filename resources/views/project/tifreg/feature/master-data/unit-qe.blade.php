@@ -501,6 +501,55 @@
   function onLangChange(){ renderTable(); if (wfModal.classList.contains('show')) { renderWf(); } }
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var masterOrgTour = {
+    id: 'tifreg-master-org',
+    steps: [
+      {
+        target: '.card-head .filters',
+        pos: 'bottom',
+        title: { id: 'Filter Hierarki & Level Organisasi', en: 'Hierarchy & Level Filter' },
+        desc: {
+          id: 'Saring daftar berdasarkan tipe struktur (Organisasi vs Unit Operasional) serta level tingkatan: Nasional, Area, Regional, atau District.',
+          en: 'Filter structural entities by type (Organization vs Unit) and hierarchy levels: National, Area, Regional, or District.'
+        }
+      },
+      {
+        target: '.table-toolbar',
+        pos: 'bottom',
+        title: { id: 'Pencarian Unit & Limit Halaman', en: 'Unit Search & Page Limit' },
+        desc: {
+          id: 'Cari cepat berdasarkan nama unit atau organisasi induk, dan tentukan jumlah baris tabel yang ditampilkan per halaman.',
+          en: 'Search directly by unit name or parent organization, and toggle the number of rows displayed per page.'
+        }
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: { id: 'Struktur Organisasi & Hubungan Parent', en: 'Organizational Structure & Hierarchy' },
+        desc: {
+          id: 'Menampilkan tingkatan level, relasi unit induk (Parent), dan tanggal pembentukan organisasi dalam platform.',
+          en: 'Displays hierarchy level, parent unit relationship, and registration timestamps.'
+        }
+      },
+      {
+        target: '#orgBody tr:first-child td:last-child',
+        pos: 'left',
+        title: { id: 'Aksi Kelola Unit & Personel Workforce', en: 'Unit Management & Workforce Actions' },
+        desc: {
+          id: 'Tombol aksi untuk: <b>Detail</b> (rincian lingkup kerja), <b>Edit</b> struktur, <b>Tambah Sub-Unit</b>, dan <b>Kelola Personel</b> (daftar teknisi & workforce ber-NIK).',
+          en: 'Action buttons to: view <b>Detail</b> (scope breakdown), <b>Edit</b>, <b>Add Sub-Unit</b>, and <b>Manage Workforce</b> (technician personnel with NIK).'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(masterOrgTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

@@ -27,10 +27,10 @@
 @include('project.tifreg.feature.partials.topbar')
 
 <main>
-  <div class="hero-banner">
+  <div class="hero-banner" id="appHeroBanner">
     <h1 data-i18n="heroTitle">Approval GCU OLT</h1>
     <p data-i18n="heroSubtitle">Tampilan approval dan update data</p>
-    <div class="pill-tabs">
+    <div class="pill-tabs" id="appTabs">
       <button class="on" data-tab="approval" data-i18n="tabApproval">Data Approval</button>
       <button data-tab="update" data-i18n="tabUpdate">Update Data</button>
     </div>
@@ -38,14 +38,14 @@
 
   <!-- TAB A: DATA APPROVAL -->
   <div id="tabApproval" class="stack">
-    <div class="card">
+    <div class="card" id="appFilterCard">
       <div class="card-body">
-        <div class="row3">
+        <div class="row3" id="appFilterRowRegion">
           <div class="field"><label>Area</label><select id="aArea"><option>PAMASUKA</option></select></div>
           <div class="field"><label>Regional</label><select id="aRegional"><option value="">Semua</option><option>KALIMANTAN</option><option>SULAWESI</option><option>KTI</option></select></div>
           <div class="field"><label>District</label><select id="aDistrict"><option value="">Semua</option><option>District Balikpapan</option><option>District Samarinda</option><option>District Makassar</option></select></div>
         </div>
-        <div class="row3">
+        <div class="row3" id="appFilterRowStatus">
           <div class="field"><label data-i18n="fMonth">Bulan</label><select id="aMonth"><option value="" data-i18n="allMonth">Semua Bulan</option><option selected>September</option></select></div>
           <div class="field"><label data-i18n="fYear">Tahun</label><select id="aYear"><option>2026</option></select></div>
           <div class="field">
@@ -66,9 +66,9 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" id="appTableCard">
       <div class="table-scroll">
-        <table>
+        <table id="appTable">
           <thead>
             <tr>
               <th><span data-i18n="cDistrict">Distrik</span></th><th>Hostname</th><th data-i18n="cIpHostname">IP Hostname</th>
@@ -424,6 +424,64 @@
   renderApproval();
   renderUpdates();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var gcuApprovalTour = {
+    id: 'tifreg-gcu-approval',
+    steps: [
+      {
+        target: '#appHeroBanner',
+        pos: 'bottom',
+        title: { id: 'Tab Modul Approval & Update', en: 'Approval & Update Tabs' },
+        desc: {
+          id: 'Beralih antara tab <b>Data Approval</b> (verifikasi hasil QC lapangan teknisi) dan <b>Update Data</b> (persetujuan perubahan atribut aset GPON/PLN).',
+          en: 'Switch between <b>Data Approval</b> (field technician QC check) and <b>Update Data</b> (asset and PLN attribute change approvals).'
+        }
+      },
+      {
+        target: '#appFilterRowRegion',
+        pos: 'bottom',
+        title: { id: 'Filter Area & Teritorial', en: 'Territory & Area Filter' },
+        desc: {
+          id: 'Saring antrean approval berdasarkan lingkup Area (PAMASUKA), Regional, serta Distrik penanggung jawab.',
+          en: 'Filter approval queues by Area (PAMASUKA), Regional territories, and in-charge Districts.'
+        }
+      },
+      {
+        target: '#appFilterRowStatus',
+        pos: 'bottom',
+        title: { id: 'Filter Status Workorder', en: 'Workorder Status Filter' },
+        desc: {
+          id: 'Fokuskan pada status <b>Complete Teknisi</b> untuk meninjau tiket yang baru diselesaikan teknisi, atau lihat status Complete, Rework, dan Expired.',
+          en: 'Focus on <b>Complete Teknisi</b> to review freshly submitted field jobs, or inspect Complete, Rework, and Expired states.'
+        }
+      },
+      {
+        target: '#appTable thead',
+        pos: 'bottom',
+        title: { id: 'Antrean Tiket Verifikasi QC', en: 'QC Verification Queue' },
+        desc: {
+          id: 'Menampilkan rincian identitas OLT, tanggal progres, dan nama teknisi yang mengonfirmasi pengerjaan GCU.',
+          en: 'Presents OLT details, timestamped progress dates, and the technician responsible for the confirmation.'
+        }
+      },
+      {
+        target: '#aBody tr:first-child .row-actions',
+        pos: 'left',
+        title: { id: 'Aksi Approval / Rework', en: 'Approve & Rework Actions' },
+        desc: {
+          id: 'Buka <b>Detail</b> untuk melihat bukti foto & checklist parameter. Klik <b>Approve</b> jika memenuhi standar, atau kembalikan ke teknisi dengan catatan perbaikan.',
+          en: 'Open <b>Detail</b> to inspect photo proofs and parameter checklists. Click <b>Approve</b> or reject back for rework.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(gcuApprovalTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

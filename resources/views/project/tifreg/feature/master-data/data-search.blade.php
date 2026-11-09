@@ -318,6 +318,64 @@ Source: valins</textarea></div>
 
   function onLangChange(){ if (!results.hidden) { renderTables(); } }
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var dataSearchTour = {
+    id: 'tifreg-master-search',
+    steps: [
+      {
+        target: '.sidebar nav',
+        pos: 'right',
+        title: { id: 'Navigasi Master Data', en: 'Master Data Navigation' },
+        desc: {
+          id: 'Menu Master Data memfasilitasi pencarian menyeluruh aset jaringan, pengelolaan hierarki Organisasi & Unit QE, serta sinkronisasi tiket Metabase.',
+          en: 'Master Data enables comprehensive network asset lookups, Organizational & Unit QE hierarchies, and Metabase ticket synchronization.'
+        }
+      },
+      {
+        target: '#fType',
+        pos: 'bottom',
+        title: { id: 'Pilihan Jenis Data Pencarian', en: 'Search Target Data Type' },
+        desc: {
+          id: 'Pilih jenis entitas yang ingin dilacak: <b>Nama ODP</b>, <b>SID</b> (Service ID) pelanggan, atau <b>Nomor Tiket</b> gangguan.',
+          en: 'Select entity type to lookup: <b>ODP Name</b>, customer <b>SID</b>, or trouble <b>Ticket Number</b>.'
+        }
+      },
+      {
+        target: '#fKeyword',
+        pos: 'bottom',
+        title: { id: 'Kata Kunci & Contoh Format', en: 'Keyword Input & Examples' },
+        desc: {
+          id: 'Ketik nama ODP (contoh: <code>ODP-BPN-014</code>) atau SID/nomor tiket, lalu tekan Enter atau klik Filter.',
+          en: 'Type the ODP name (e.g. <code>ODP-BPN-014</code>) or SID/ticket ID, then press Enter or click Filter.'
+        }
+      },
+      {
+        target: '#filterBtn',
+        pos: 'bottom',
+        title: { id: 'Eksekusi Filter & Sinkronisasi', en: 'Execute Filter & Fetch Data' },
+        desc: {
+          id: 'Klik tombol <b>Filter</b> untuk menarik dan menyatukan data dari 5 modul: Valins Terbaru, Validasi Lapangan, E2E Mapping, Info ODP, dan UIM Pelanggan.',
+          en: 'Click <b>Filter</b> to aggregate data across 5 modules: Latest Valins, Field Validations, E2E Mapping, ODP Details, and Customer UIM.'
+        }
+      },
+      {
+        target: '#stateCard',
+        pos: 'bottom',
+        title: { id: 'Panel Agregasi Data Jaringan', en: 'Unified Network Data Panel' },
+        desc: {
+          id: 'Hasil pencarian akan merinci kondisi fisik ODP, port ONT terpasang, pemetaan E2E, serta status layanan broadband (Voice, Internet, IPTV).',
+          en: 'Search output reveals physical ODP health, connected ONT ports, E2E mappings, and active triple-play services.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(dataSearchTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

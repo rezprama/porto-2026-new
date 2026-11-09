@@ -44,14 +44,14 @@
   </div>
 
   <div class="stack">
-    <div class="card">
+    <div class="card" id="filterCard">
       <div class="card-body">
-        <div class="row3">
+        <div class="row3" id="filterRowRegion">
           <div class="field"><label>Area</label><select id="fArea"><option>PAMASUKA</option></select></div>
           <div class="field"><label>Regional</label><select id="fRegional"><option value="">Semua</option><option>KALIMANTAN</option><option>SULAWESI</option><option>KTI</option></select></div>
           <div class="field"><label>District</label><select id="fDistrict"><option value="">Semua</option><option>District Balikpapan</option><option>District Samarinda</option><option>District Makassar</option></select></div>
         </div>
-        <div class="row3">
+        <div class="row3" id="filterRowTypePeriod">
           <div class="field">
             <label data-i18n="fType">Type</label>
             <select id="fType"><option value="">ALL</option><option>INDOOR</option><option>OUTDOOR</option></select>
@@ -65,7 +65,7 @@
             <select id="fYear"><option>2026</option><option>2025</option><option>2024</option></select>
           </div>
         </div>
-        <div class="row3">
+        <div class="row3" id="filterRowSearch">
           <div class="field" id="fMonthWrap">
             <label data-i18n="fMonth">Bulan</label>
             <select id="fMonth"><option>Januari</option><option>Februari</option><option>Maret</option><option selected>September</option><option>Desember</option></select>
@@ -86,10 +86,10 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" id="matrixCard">
       <div class="card-head"><h3 data-i18n="matrixTitle">Achievement Matrix</h3></div>
       <div class="matrix-scroll">
-        <table class="matrix">
+        <table class="matrix" id="matrixTable">
           <thead>
             <tr>
               <th rowspan="2" data-i18n="cSto">STO</th>
@@ -353,6 +353,91 @@
   function onLangChange(){ renderMatrix(); }
   renderMatrix();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var gcuMonitoringTour = {
+    id: 'tifreg-gcu-monitoring',
+    steps: [
+      {
+        target: '.sidebar nav',
+        pos: 'right',
+        title: { id: 'Navigasi Menu GCU OLT', en: 'GCU OLT Navigation' },
+        desc: {
+          id: 'Modul GCU OLT mencakup 4 sub-menu utama: Monitoring pencapaian, Monitoring Kelistrikan (PLN & kWh), Listing aset OLT, serta Approval verifikasi hasil QC teknisi.',
+          en: 'The GCU OLT module includes 4 key sub-menus: Achievement Monitoring, Electrical (PLN & kWh), OLT Asset Listing, and Quality Control Approval.'
+        }
+      },
+      {
+        target: '#filterRowRegion',
+        pos: 'bottom',
+        title: { id: 'Filter Hirarki Wilayah', en: 'Territory Hierarchy Filter' },
+        desc: {
+          id: 'Saring lingkup data berdasarkan Area (PAMASUKA), Regional (Kalimantan, Sulawesi, KTI), hingga Distrik operasional untuk memfokuskan pantauan.',
+          en: 'Filter data across Area (PAMASUKA), Regional territories (Kalimantan, Sulawesi, KTI), down to operational Districts.'
+        }
+      },
+      {
+        target: '#filterRowTypePeriod',
+        pos: 'bottom',
+        title: { id: 'Tipe OLT & Periode Monitoring', en: 'OLT Type & Monitoring Period' },
+        desc: {
+          id: 'Pilih tipe penempatan fisik perangkat (INDOOR / OUTDOOR) serta interval siklus evaluasi: BULAN, SEMESTER, atau TAHUN berjalan.',
+          en: 'Select placement type (INDOOR / OUTDOOR) and evaluation timeframe: MONTHLY, SEMESTER, or YEAR.'
+        }
+      },
+      {
+        target: '#filterRowSearch',
+        pos: 'bottom',
+        title: { id: 'Filter Kondisi & Pencarian Cepat', en: 'Condition Filter & Search' },
+        desc: {
+          id: 'Saring kondisi fisik (ALL, OK, NOK), cari langsung nama STO atau hostname OLT, lalu klik tombol <b>Cari</b> untuk memutakhirkan tabel.',
+          en: 'Filter condition status (ALL, OK, NOK), search STO or hostname directly, then click <b>Search</b> to refresh results.'
+        }
+      },
+      {
+        target: '#matrixTable thead tr:first-child',
+        pos: 'bottom',
+        title: { id: 'Matriks Target & Tahapan Workorder', en: 'Target Matrix & Workorder Stages' },
+        desc: {
+          id: 'Menampilkan Total OLT terdaftar, Target periode berjalan, Belum GCU, serta tahapan tiket: Waiting, Pending, Rework, Complete Teknisi, Complete Approval, hingga Expired beserta persentase Achievement.',
+          en: 'Displays registered OLT count, periodic target, unassigned GCU, and lifecycle stages: Waiting, Pending, Rework, Technician Done, Approval Done, Expired, and total Achievement %.'
+        }
+      },
+      {
+        target: '#matrixTable thead th.grp-cond',
+        pos: 'bottom',
+        title: { id: '7 Parameter Kondisi GCU', en: '7 Physical GCU Parameters' },
+        desc: {
+          id: 'Pemantauan spesifik 7 parameter fisik perangkat: Power OLT, AC pendingin, suhu temperatur, baterai cadangan, grounding, BIR, dan baterai ukur.',
+          en: 'Dedicated health breakdown across 7 OLT parameters: Power OLT, AC cooling, room temperature, backup battery, grounding, BIR, and battery measurement.'
+        }
+      },
+      {
+        target: '#matrixBody .cell-num:not(.zero)',
+        pos: 'top',
+        title: { id: 'Interaktif: Drill-down Tiket Workorder', en: 'Interactive Workorder Drill-Down' },
+        desc: {
+          id: 'Klik angka biru pada sel tabel untuk membuka dialog detail tiket workorder STO tersebut, lengkap dengan status pengerjaan dan formulir teknis.',
+          en: 'Click any blue number in the matrix cells to inspect the detailed workorder ticket list for that STO, including technician status and inspection reports.'
+        }
+      },
+      {
+        target: '#matrixTotals',
+        pos: 'top',
+        title: { id: 'Total Rekapitulasi Wilayah', en: 'Regional Aggregated Totals' },
+        desc: {
+          id: 'Baris total mengakumulasi seluruh target STO, tahapan tiket, persentase pencapaian (Achievement %), dan total temuan kondisi fisik di wilayah terpilih.',
+          en: 'Aggregates all STO targets, tickets in progress, regional achievement percentage, and physical condition counts across the selected territory.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(gcuMonitoringTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

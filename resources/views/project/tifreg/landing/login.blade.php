@@ -250,6 +250,78 @@
   document.getElementById('forgotBtn').addEventListener('click', function(){
     showNote(t('forgotNote'));
   });
+
+  /* ---------- Tour Guide & Hints Integration ---------- */
+  var loginTour = {
+    id: 'tifreg-login',
+    steps: [
+      {
+        target: '.type-toggle',
+        pos: 'bottom',
+        title: { id: 'Pilihan Tipe Login', en: 'Login Type Selection' },
+        desc: {
+          id: 'Pilih antara <b>LDAP Telkom</b> untuk internal Telkom Group atau <b>Akun DALAPA</b> untuk mitra & operasional regional.',
+          en: 'Choose between <b>LDAP Telkom</b> for Telkom internal accounts or <b>DALAPA Account</b> for regional & partner operations.'
+        }
+      },
+      {
+        target: '#username',
+        pos: 'bottom',
+        title: { id: 'Username / NIK Akses Demo', en: 'Username / Demo NIK' },
+        desc: {
+          id: 'Ketik username demo <b>1111</b> untuk masuk dan menjelajahi fitur tanpa perlu kredensial resmi.',
+          en: 'Enter the demo username <b>1111</b> to log in and explore features without real credentials.'
+        }
+      },
+      {
+        target: '.pw-wrap',
+        pos: 'bottom',
+        title: { id: 'Kata Sandi Demo', en: 'Demo Password' },
+        desc: {
+          id: 'Gunakan kata sandi <b>1111</b>. Klik ikon mata untuk melihat atau menyembunyikan teks sandi.',
+          en: 'Use password <b>1111</b>. Click the eye icon on the right to toggle password visibility.'
+        }
+      },
+      {
+        target: '.top-controls',
+        pos: 'bottom',
+        title: { id: 'Pengaturan Tampilan & Bahasa', en: 'Display & Language Settings' },
+        desc: {
+          id: 'Beralih antara tema <b>Terang / Gelap</b> dan pilih bahasa <b>Indonesia / English</b> sesuai kenyamanan Anda.',
+          en: 'Toggle between <b>Light / Dark</b> mode and switch languages between <b>Indonesian / English</b>.'
+        }
+      },
+      {
+        target: '.submit-btn',
+        pos: 'top',
+        title: { id: 'Tombol Masuk', en: 'Login & Proceed' },
+        desc: {
+          id: 'Klik tombol <b>Masuk</b> untuk mengautentikasi dan langsung diarahkan ke peta operasional <b>Map Alpro</b>.',
+          en: 'Click <b>Masuk / Login</b> to authenticate and proceed directly to the <b>Map Alpro</b> dashboard.'
+        }
+      }
+    ]
+  };
+
+  var guideLink = document.querySelector('[data-i18n="guide"]');
+  if (guideLink) {
+    guideLink.addEventListener('click', function(e){
+      e.preventDefault();
+      TourGuide.start(loginTour, true);
+    });
+  }
+
+  localeSelect.addEventListener('change', function(){
+    if (window.TourGuide) {
+      TourGuide.updateTexts();
+    }
+  });
+
+  setTimeout(function(){
+    TourGuide.start(loginTour);
+  }, 400);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

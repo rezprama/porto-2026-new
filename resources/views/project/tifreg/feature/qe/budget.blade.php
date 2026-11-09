@@ -126,13 +126,13 @@
 
   <!-- TAB: KONTRAK -->
   <div id="tabContractPane" class="stack">
-    <div class="toolbar-row" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <div class="toolbar-row" id="contractToolbarRow" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
       <input type="text" id="contractSearch" data-i18n-ph="searchPh" placeholder="Cari kontrak..." style="height:38px;border-radius:8px;border:1px solid var(--border);background:var(--panel-bg);padding:0 12px;font-size:13px;font-family:inherit;color:var(--text);width:260px" />
       <button class="btn-primary" id="addContractBtn" data-i18n="btnAddContract">+ Tambah Kontrak Anggaran</button>
     </div>
-    <div class="card">
+    <div class="card" id="contractCard">
       <div class="table-scroll">
-        <table>
+        <table id="contractTable">
           <thead><tr>
             <th>#</th><th data-i18n="cName">Nama</th><th data-i18n="cSource">Sumber Anggaran</th><th data-i18n="cOrg">Organisasi</th>
             <th data-i18n="cPeriod">Periode</th><th data-i18n="cBudget">Total Budget</th><th data-i18n="cDistributed">Terdistribusi</th>
@@ -876,6 +876,64 @@
   function onLangChange(){ renderContracts(); renderSources(); renderDistTree(); renderPrograms(); }
   renderContracts(); renderSources(); renderDistTree(); renderPrograms();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeBudgetTour = {
+    id: 'tifreg-qe-budget',
+    steps: [
+      {
+        target: '#tabNav',
+        pos: 'bottom',
+        title: { id: '4 Pilar Manajemen Anggaran QE', en: '4 QE Budget Management Pillars' },
+        desc: {
+          id: 'Kelola siklus pendanaan proyek QE melalui 4 pilar: Kontrak Anggaran (master kontrak), Sumber Anggaran (kartu alokasi per rilis), Distribusi Anggaran (hierarki wilayah & program), dan Master Program.',
+          en: 'Manage the entire QE financing lifecycle across 4 pillars: Budget Contracts, Budget Sources, Regional & Program Distribution, and Master Programs.'
+        }
+      },
+      {
+        target: '#contractToolbarRow',
+        pos: 'bottom',
+        title: { id: 'Pencarian & Penambahan Kontrak', en: 'Search & Add Budget Contract' },
+        desc: {
+          id: 'Gunakan input pencarian untuk menyaring nomor atau nama kontrak, atau klik <b>+ Tambah Kontrak Anggaran</b> untuk mendaftarkan kesepakatan dana baru.',
+          en: 'Use the search box to filter contract numbers or names, or click <b>+ Tambah Kontrak Anggaran</b> to register a new funding agreement.'
+        }
+      },
+      {
+        target: '#contractTable thead',
+        pos: 'bottom',
+        title: { id: 'Tabel Rekapitulasi Kontrak', en: 'Contract Recapitulation Table' },
+        desc: {
+          id: 'Melacak nilai Total Budget, dana Terdistribusi, Alokasi komitmen lapangan, Realisasi yang telah dibayar, serta saldo Available.',
+          en: 'Tracks Total Budget value, Distributed funds, committed Allocations, realized expenditures, and remaining Available balances.'
+        }
+      },
+      {
+        target: '#contractTotals',
+        pos: 'top',
+        title: { id: 'Total Akumulasi Seluruh Kontrak', en: 'All-Contract Cumulative Totals' },
+        desc: {
+          id: 'Menampilkan ringkasan total neraca keuangan seluruh kontrak aktif di regional, memastikan transparansi penyerapan dana QE.',
+          en: 'Displays a cumulative summary of all active regional contracts, ensuring full transparency in QE fund absorption.'
+        }
+      },
+      {
+        target: '#tabNav button[data-tab="distribution"]',
+        pos: 'bottom',
+        title: { id: 'Distribusi Hierarki & Program', en: 'Hierarchical & Program Distribution' },
+        desc: {
+          id: 'Beralih ke tab <b>Distribusi Anggaran</b> untuk melihat visualisasi tree-table alokasi dana per Distrik hingga program pekerjaan spesifik.',
+          en: 'Switch to the <b>Distribusi Anggaran</b> tab to inspect tree-table breakdowns across operational Districts and specific work programs.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(qeBudgetTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

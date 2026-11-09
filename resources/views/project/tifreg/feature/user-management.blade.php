@@ -1005,6 +1005,64 @@
 
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var userMgmtTour = {
+    id: 'tifreg-user-mgmt',
+    steps: [
+      {
+        target: '.tabs-strip',
+        pos: 'bottom',
+        title: { id: 'Struktur Hak Akses & Manajemen User', en: 'User Management & Access Control Tabs' },
+        desc: {
+          id: 'Navigasi 6 modul kontrol: <b>Users</b> (akun pengguna), <b>Roles</b> (peran), <b>Menus</b> (hak akses menu), <b>Permissions</b> (izin aksi), <b>Mobile Privilege</b>, dan <b>Akses API External</b>.',
+          en: 'Navigate 6 security modules: <b>Users</b>, <b>Roles</b>, <b>Menus</b>, <b>Permissions</b>, <b>Mobile Privilege</b>, and <b>External API Access</b>.'
+        }
+      },
+      {
+        target: '#addBtn',
+        pos: 'bottom',
+        title: { id: 'Tambah Pengguna Baru', en: 'Add New User Account' },
+        desc: {
+          id: 'Klik tombol ini untuk mendaftarkan akun baru, menetapkan NIK, email, wilayah operasional (Area, Regional, Distrik, STO), dan peran (Role).',
+          en: 'Click to register a new user account, assigning NIK, email, operational scope (Area, Regional, District, STO), and role.'
+        }
+      },
+      {
+        target: '.table-toolbar',
+        pos: 'bottom',
+        title: { id: 'Pencarian & Filter Pengguna', en: 'User Search & Page Size' },
+        desc: {
+          id: 'Cari akun secara instan berdasarkan nama, NIK, atau alamat email, serta atur kapasitas baris per halaman (10, 25, 50).',
+          en: 'Search instantly by name, NIK, or email, and adjust page limits (10, 25, 50).'
+        }
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: { id: 'Atribut Akun & Keamanan 2FA', en: 'Account Attributes & 2FA Status' },
+        desc: {
+          id: 'Memantau data identitas, penetapan role, cakupan wilayah, status proteksi Two-Factor Authentication (2FA), serta tanggal aktif akun.',
+          en: 'Monitors identity, role, operational territory, Two-Factor Authentication (2FA) status, and account activity.'
+        }
+      },
+      {
+        target: '#userTbody tr:first-child .row-actions',
+        pos: 'left',
+        title: { id: 'Aksi Pengelolaan & Reset Password', en: 'Management Actions & Password Reset' },
+        desc: {
+          id: 'Kelola akun: <b>Edit Data</b>, <b>Aktifkan / Nonaktifkan</b>, <b>Hapus</b>, atau <b>Reset Password</b> instan dengan generator acak aman.',
+          en: 'Manage user: <b>Edit</b>, <b>Toggle Active/Inactive</b>, <b>Delete</b>, or perform an instant secure random <b>Password Reset</b>.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(userMgmtTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

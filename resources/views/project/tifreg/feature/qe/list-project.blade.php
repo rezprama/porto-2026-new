@@ -83,7 +83,7 @@
 
   <div class="summary-grid" id="summaryGrid"></div>
 
-  <div class="toolbar-row">
+  <div class="toolbar-row" id="qeToolbarRow">
     <input type="text" id="searchInput" data-i18n-ph="searchPh" placeholder="Cari nama / no project / district..." />
     <div class="row-actions">
       <select id="perPage"><option value="6">6</option><option value="12" selected>12</option><option value="24">24</option><option value="48">48</option></select>
@@ -652,6 +652,73 @@
   function onLangChange(){ renderAll(); }
   renderAll();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeProjectTour = {
+    id: 'tifreg-qe-project',
+    steps: [
+      {
+        target: '.sidebar nav',
+        pos: 'right',
+        title: { id: 'Navigasi Modul QE', en: 'QE Module Navigation' },
+        desc: {
+          id: 'Modul Quality Enhancement (QE) terdiri dari List Project (manajemen siklus proyek lapangan) dan Anggaran (pengelolaan kontrak & alokasi dana).',
+          en: 'The Quality Enhancement (QE) suite consists of List Project (field project lifecycle) and Anggaran (budget contracts & fund distribution).'
+        }
+      },
+      {
+        target: '#ajukanBtn',
+        pos: 'bottom',
+        title: { id: 'Pengajuan Proyek QE Baru', en: 'Submit New QE Project' },
+        desc: {
+          id: 'Klik tombol ini untuk membuka formulir pengajuan proyek QE baru, menentukan tipe program (Preventif/Kuratif), distrik, target segmen jaringan, dan estimasi BOQ material.',
+          en: 'Click to open the new QE submission form to set program type (Preventive/Curative), district, network segment targets, and estimated material BOQ.'
+        }
+      },
+      {
+        target: '#summaryGrid',
+        pos: 'bottom',
+        title: { id: 'Kartu Ringkasan Status Proyek', en: 'Project Status Summary Cards' },
+        desc: {
+          id: 'Metrik total proyek berdasarkan tahapan siklus: ALL, DRAFT, SUBMIT (menunggu review), PROGRESS (sedang dikerjakan teknisi), dan FINISH (rekon & approval selesai). Klik kartu untuk memfilter.',
+          en: 'Total project metrics across lifecycle stages: ALL, DRAFT, SUBMIT (pending review), PROGRESS (underway by technicians), and FINISH (reconciliation approved). Click any card to filter.'
+        }
+      },
+      {
+        target: '#qeToolbarRow',
+        pos: 'bottom',
+        title: { id: 'Pencarian & Kontrol Tampilan', en: 'Search & Display Controls' },
+        desc: {
+          id: 'Cari cepat berdasarkan nama proyek, nomor kode proyek, atau distrik, serta sesuaikan jumlah kartu proyek yang ditampilkan per halaman.',
+          en: 'Search quickly by project name, project code number, or district, and adjust the number of project cards shown per page.'
+        }
+      },
+      {
+        target: '#qeGrid .qe-card:first-child',
+        pos: 'top',
+        title: { id: 'Kartu Proyek QE & Progres Pengerjaan', en: 'QE Project Card & Work Progress' },
+        desc: {
+          id: 'Memuat kode proyek, distrik, target volume, tracking progress usulan & fisik teknisi, nilai anggaran, dan status smart label terintegrasi.',
+          en: 'Displays project code, district, target volumes, approval & physical progress bars, budget value, and smart status badges.'
+        }
+      },
+      {
+        target: '#qeGrid .qe-card:first-child .card-actions',
+        pos: 'top',
+        title: { id: 'Tombol Aksi Cepat Proyek', en: 'Quick Project Action Buttons' },
+        desc: {
+          id: 'Ikon aksi untuk: <b>Detail</b> (rincian BOQ, foto evidens sebelum/sesudah, dan approval TL/QE), <b>Mulai Pekerjaan</b> (penugasan tim teknisi), dan <b>Riwayat</b> log timeline.',
+          en: 'Action icons to: inspect <b>Detail</b> (BOQ breakdown, before/after evidence photos, and TL/QE approval), <b>Start Work</b> (assign field technicians), and view <b>History</b> logs.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(qeProjectTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

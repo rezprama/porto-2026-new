@@ -704,6 +704,82 @@
   });
 
   applyLang();
+
+  /* ---------- Tour Guide & Hints Integration (Map Alpro) ---------- */
+  var mapTour = {
+    id: 'tifreg-map-alpro',
+    steps: [
+      {
+        target: '.sidebar nav',
+        pos: 'right',
+        title: { id: 'Navigasi Modul Operasional', en: 'Operational Modules Menu' },
+        desc: {
+          id: 'Sidebar navigasi untuk mengakses seluruh modul DALAPA: <b>Map Alpro</b>, User Management, Master Data, Network Element (NE), dan Quality Engineering (QE).',
+          en: 'Use the sidebar menu to explore all DALAPA modules: <b>Map Alpro</b>, User Management, Master Data, Network Element (NE), and Quality Engineering (QE).'
+        }
+      },
+      {
+        target: '.layer-pill',
+        pos: 'bottom',
+        title: { id: 'Ganti Lapisan Peta (Layer)', en: 'Map Layer Switcher' },
+        desc: {
+          id: 'Beralih instan antara <b>Peta Standar (OSM)</b> dan <b>Citra Satelit</b> resolusi tinggi untuk memverifikasi posisi fisik tiang/ODP di lapangan.',
+          en: 'Instantly toggle between <b>Standard Street Map (OSM)</b> and <b>High-Res Satellite</b> imagery to verify physical surroundings of network assets.'
+        }
+      },
+      {
+        target: '#measureBtn',
+        pos: 'bottom',
+        title: { id: 'Alat Ukur Jarak Bentang', en: 'Distance Measurement Tool' },
+        desc: {
+          id: 'Ukur jarak bentang kabel fiber optik antar tiang/ODP dengan mengklik titik-titik pada peta untuk kalkulasi jarak presisi dalam meter.',
+          en: 'Measure fiber cable spans between poles/ODPs by clicking points directly on the map for automated distance calculations in meters.'
+        }
+      },
+      {
+        target: '#filterBtn',
+        pos: 'bottom',
+        title: { id: 'Filter & Pencarian Aset', en: 'Asset Filter & Search' },
+        desc: {
+          id: 'Buka panel filter untuk menyaring marker berdasarkan Witel, STO, vendor OLT (ZTE, Huawei, Fiberhome, ALU), dan persentase okupansi port.',
+          en: 'Open the filter dialog to filter markers by Witel, STO, OLT vendor, and port occupancy levels.'
+        }
+      },
+      {
+        target: '#syncPanel',
+        pos: 'right',
+        title: { id: 'Status Sinkronisasi Heatmap', en: 'Sync Status & Heatmap' },
+        desc: {
+          id: 'Menampilkan persentase integrasi data tiket gangguan (INC) yang telah terpetakan ke dalam koordinat heatmap secara real-time.',
+          en: 'Displays the live sync percentage of trouble tickets (INC) mapped into real-time operational heatmap coordinates.'
+        }
+      },
+      {
+        target: '.legend',
+        pos: 'top',
+        title: { id: 'Legenda Status Okupansi ODP', en: 'ODP Occupancy Legend' },
+        desc: {
+          id: 'Panduan arti warna marker ODP: dari kosong (hitam), kapasitas rendah (hijau), hingga okupansi penuh 80-100% (merah).',
+          en: 'Visual guide to ODP marker colors: from empty (black), low capacity (green), to full 80-100% occupancy (red).'
+        }
+      },
+      {
+        target: '.topbar',
+        pos: 'bottom',
+        title: { id: 'Bar Kontrol & Jam WITA', en: 'Control Bar & Local Clock' },
+        desc: {
+          id: 'Pantau jam kerja lokal (WITA Balikpapan), beralih tema gelap/terang, ganti bahasa sistem ID/EN, dan kelola sesi akun Anda.',
+          en: 'Monitor operational local time (WITA Balikpapan), toggle dark/light theme, switch language, and manage account session.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(mapTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

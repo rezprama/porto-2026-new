@@ -27,19 +27,19 @@
   </div>
 
   <div class="stack">
-    <div class="card">
+    <div class="card" id="listFilterCard">
       <div class="card-body">
-        <div class="row3">
+        <div class="row3" id="listFilterRowRegion">
           <div class="field"><label>Area</label><select id="fArea"><option>PAMASUKA</option></select></div>
           <div class="field"><label>Regional</label><select id="fRegional"><option value="">Semua</option><option>KALIMANTAN</option><option>SULAWESI</option><option>KTI</option></select></div>
           <div class="field"><label>District</label><select id="fDistrict"><option value="">Semua</option><option>District Balikpapan</option><option>District Samarinda</option><option>District Makassar</option></select></div>
         </div>
-        <div class="row3">
+        <div class="row3" id="listFilterRowPeriod">
           <div class="field"><label>STO</label><select id="fSto"><option value="" data-i18n="allSto">Semua STO</option></select></div>
           <div class="field"><label data-i18n="fSemester">Semester</label><select id="fSemester"><option value="1">Semester 1</option><option value="2" selected>Semester 2</option></select></div>
           <div class="field"><label data-i18n="fMonth">Bulan</label><select id="fMonth"><option value="" data-i18n="allMonth">Semua Bulan</option><option selected>September</option><option>Oktober</option></select></div>
         </div>
-        <div class="row3">
+        <div class="row3" id="listFilterRowStatus">
           <div class="field"><label data-i18n="fYear">Tahun</label><select id="fYear"><option>2026</option><option>2025</option></select></div>
           <div class="field">
             <label data-i18n="fStatus">Status</label>
@@ -55,14 +55,14 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" id="listTableCard">
       <div class="card-head"><h3>Data Listing</h3></div>
-      <div class="table-toolbar">
+      <div class="table-toolbar" id="listTableToolbar">
         <select id="perPage"><option value="10">10 / halaman</option><option value="25">25 / halaman</option></select>
         <input type="text" id="searchInput" data-i18n-ph="searchPh" placeholder="Cari hostname / STO..." />
       </div>
       <div class="table-scroll">
-        <table>
+        <table id="listTable">
           <thead>
             <tr>
               <th data-sort="district"><span data-i18n="cDistrict">Distrik</span><span class="arr"></span></th>
@@ -78,7 +78,7 @@
         </table>
       </div>
       <div class="table-foot"><span id="pageInfo"></span><div class="pager" id="pager"></div></div>
-      <div class="legend-row">
+      <div class="legend-row" id="listLegendRow">
         <div class="item"><span class="sw" style="background:#ef4444"></span><span data-i18n="legendRed">GPON belum di listing</span></div>
         <div class="item"><span class="sw" style="background:#fbbf24"></span><span data-i18n="legendAmber">GPON sudah di listing, namun status belum COMPLETE</span></div>
         <div class="item"><span class="sw" style="background:#84cc16"></span><span data-i18n="legendLime">GPON sudah di listing, dengan status COMPLETE</span></div>
@@ -245,6 +245,73 @@
   function onLangChange(){ renderTable(); }
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var gcuListingTour = {
+    id: 'tifreg-gcu-listing',
+    steps: [
+      {
+        target: '#listFilterRowRegion',
+        pos: 'bottom',
+        title: { id: 'Filter Wilayah Teritorial', en: 'Territory Region Filter' },
+        desc: {
+          id: 'Pilih Area (PAMASUKA), Regional (Kalimantan, Sulawesi, KTI), dan Distrik penugasan untuk menyaring daftar GPON/OLT.',
+          en: 'Select Area (PAMASUKA), Regional territories, and Districts to filter the registered GPON/OLT list.'
+        }
+      },
+      {
+        target: '#listFilterRowPeriod',
+        pos: 'bottom',
+        title: { id: 'Pemilihan STO & Periode Listing', en: 'STO & Listing Period Selection' },
+        desc: {
+          id: 'Tentukan STO spesifik dan alokasi periode pengerjaan (Semester 1 / Semester 2 serta Bulan penugasan).',
+          en: 'Specify the STO and assign work periods (Semester 1 / 2 and Target Month).'
+        }
+      },
+      {
+        target: '#listFilterRowStatus',
+        pos: 'bottom',
+        title: { id: 'Status Kelayakan Listing', en: 'Listing Eligibility Status' },
+        desc: {
+          id: 'Saring berdasarkan status pengerjaan: BELUM LISTING, BELUM COMPLETE, atau COMPLETE, lalu klik <b>Filter</b>.',
+          en: 'Filter by workorder readiness: NOT YET LISTED, INCOMPLETE, or COMPLETE, then click <b>Filter</b>.'
+        }
+      },
+      {
+        target: '#listTable thead',
+        pos: 'bottom',
+        title: { id: 'Daftar Aset OLT & Tim Pelaksana', en: 'OLT Asset & Workforce Register' },
+        desc: {
+          id: 'Tabel memuat Nama OLT, tanggal listing resmi, nama teknisi/workforce pelaksana, dan badge status pengerjaan saat ini.',
+          en: 'Displays OLT hostname, official listing date, assigned technician name, and current status badges.'
+        }
+      },
+      {
+        target: '#tbody tr:first-child td:last-child',
+        pos: 'left',
+        title: { id: 'Tombol Aksi Tambah Listing', en: 'Listing Action Trigger' },
+        desc: {
+          id: 'Klik tombol <b>Listing</b> pada OLT yang belum terdaftar untuk memicu pembuatan workorder baru ke teknisi lapangan.',
+          en: 'Click the <b>Listing</b> button on unlisted OLTs to initiate a new workorder assignment for field technicians.'
+        }
+      },
+      {
+        target: '#listLegendRow',
+        pos: 'top',
+        title: { id: 'Legenda Indikator Status GPON', en: 'GPON Status Indicators Legend' },
+        desc: {
+          id: 'Keterangan kode warna baris: Merah (Belum Listing), Kuning (Dalam Proses / Belum Complete), dan Hijau (Telah Selesai / Complete).',
+          en: 'Color legend guide: Red (Unlisted), Amber (In Progress / Incomplete), and Green (Fully Completed).'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(gcuListingTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>

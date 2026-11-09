@@ -262,6 +262,55 @@ INC2468013</textarea>
 
   function onLangChange(){ renderResults(); }
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var masterSyncTour = {
+    id: 'tifreg-master-sync',
+    steps: [
+      {
+        target: '#ticketInput',
+        pos: 'bottom',
+        title: { id: 'Input Multi-Tiket Gangguan (INC)', en: 'Multi-Ticket Batch Input' },
+        desc: {
+          id: 'Masukkan satu atau banyak nomor tiket gangguan sekaligus, dipisahkan dengan koma atau baris baru (contoh: <code>INC1234567, INC7654321</code>).',
+          en: 'Enter one or multiple trouble ticket IDs at once, separated by commas or line breaks (e.g. <code>INC1234567, INC7654321</code>).'
+        }
+      },
+      {
+        target: '#searchBtn',
+        pos: 'bottom',
+        title: { id: 'Pencarian Data ke Metabase', en: 'Search Tickets from Metabase' },
+        desc: {
+          id: 'Klik <b>Cari</b> (atau tekan <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) untuk menarik status terkini dan atribut tiket langsung dari basis data Metabase.',
+          en: 'Click <b>Cari</b> (or press <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to fetch live ticket attributes and progress directly from Metabase.'
+        }
+      },
+      {
+        target: '.card-head',
+        pos: 'bottom',
+        title: { id: 'Statistik Hasil & Tombol Sync Semua', en: 'Ticket Counts & Batch Sync' },
+        desc: {
+          id: 'Menampilkan badge jumlah tiket yang ditemukan vs tidak ditemukan, serta tombol <b>Sync Semua</b> untuk sinkronisasi massal dalam satu klik.',
+          en: 'Shows badges for found vs missing tickets, plus the <b>Sync Semua</b> button for one-click bulk synchronization.'
+        }
+      },
+      {
+        target: '#emptyHint',
+        pos: 'bottom',
+        title: { id: 'Rincian Tiket & Aksi Sinkronisasi', en: 'Ticket Details & Sync Action' },
+        desc: {
+          id: 'Kartu hasil menampilkan Service ID, Witel, Workzone, Owner Group, serta tombol individual untuk menyinkronkan data tiket ke sistem Dalapa.',
+          en: 'Result cards display Service ID, Witel, Workzone, Owner Group, and per-ticket sync actions into the Dalapa database.'
+        }
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TourGuide.start(masterSyncTour);
+  }, 450);
 </script>
+
+@include('project.tifreg.feature.partials.tour-guide')
 </body>
 </html>
