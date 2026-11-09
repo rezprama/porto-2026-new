@@ -111,7 +111,8 @@
   #skills{background:var(--tone-base)}
   #certifications{background:var(--tone-alt);border-top:1px solid var(--tone-alt-border);border-bottom:1px solid var(--tone-alt-border)}
   #project{background:var(--tone-base)}
-  footer#contact{background:var(--tone-alt);border-top:1px solid var(--tone-alt-border);padding:54px 0 60px;margin-top:0}
+  #team{background:var(--tone-alt);border-top:1px solid var(--tone-alt-border);border-bottom:1px solid var(--tone-alt-border)}
+  footer#contact{background:var(--tone-base);border-top:1px solid var(--tone-alt-border);padding:54px 0 60px;margin-top:0}
   .foot{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
   .foot .links{display:flex;gap:10px;flex-wrap:wrap}
   .foot a.link{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border:1px solid var(--border);border-radius:10px;
@@ -226,6 +227,100 @@
   .tl .desc{font-size:14px;color:var(--body);max-width:72ch;line-height:1.6}
   .tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--red);border:1px solid color-mix(in srgb,var(--red) 40%,var(--border));
     background:color-mix(in srgb,var(--red) 8%,transparent);padding:2px 8px;border-radius:6px;font-weight:600}
+
+  /* ---------- team & workplace gallery (self/experience) ---------- */
+  .team-showcase-wrap{margin-top:52px;padding-top:40px;border-top:1px dashed var(--border)}
+  .team-showcase-header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px;flex-wrap:wrap}
+  .team-showcase-title-box{display:flex;flex-direction:column;gap:6px}
+  .team-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;
+    background:var(--surface-2);border:1px solid var(--border);font-size:11px;font-weight:700;
+    color:var(--navy);letter-spacing:.04em;text-transform:uppercase;width:fit-content}
+  [data-theme="dark"] .team-badge{color:var(--blue)}
+  .team-showcase-header h3{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+  .team-showcase-header p{font-size:13.5px;color:var(--muted);max-width:58ch;line-height:1.55}
+  .team-counter-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;
+    background:var(--surface);border:1px solid var(--border);font-size:12.5px;color:var(--muted);box-shadow:var(--shadow)}
+  .team-counter-pill span{font-weight:700;color:var(--ink)}
+
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .team-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;cursor:pointer;
+    transition:transform .24s cubic-bezier(.16,1,.3,1),box-shadow .24s ease,border-color .24s ease;outline:none}
+  .team-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px -8px rgba(0,0,0,.15);border-color:color-mix(in srgb,var(--navy) 40%,var(--border))}
+  .team-card:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+  .team-card.featured{grid-column:span 2}
+
+  .team-thumb-box{position:relative;width:100%;aspect-ratio:16/10;background:#0d141e;overflow:hidden}
+  .team-card.featured .team-thumb-box{aspect-ratio:20/10}
+  .team-thumb-img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+  .team-card:hover .team-thumb-img{transform:scale(1.05)}
+  .team-thumb-overlay{position:absolute;inset:0;background:rgba(15,23,42,.38);display:flex;align-items:center;
+    justify-content:center;opacity:0;transition:opacity .22s ease;backdrop-filter:blur(2px)}
+  .team-card:hover .team-thumb-overlay{opacity:1}
+  .team-view-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;
+    background:rgba(255,255,255,.94);color:#0f172a;font-size:12px;font-weight:700;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+
+  .team-date-badge{position:absolute;top:12px;right:12px;padding:3px 9px;border-radius:6px;
+    font-size:11px;font-weight:600;background:rgba(15,23,42,.78);color:#fff;backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.14)}
+  .team-tag-badge{position:absolute;bottom:12px;left:12px;padding:4px 10px;border-radius:6px;
+    font-size:11px;font-weight:700;background:color-mix(in srgb,var(--navy) 90%,black);color:#fff;
+    backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);letter-spacing:.02em}
+
+  .team-card-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .team-card-org{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--navy);
+    letter-spacing:.03em;text-transform:uppercase}
+  [data-theme="dark"] .team-card-org{color:var(--blue)}
+  .team-card-org .dot{width:5px;height:5px;border-radius:50%;background:var(--red)}
+  .team-card-title{font-size:15px;font-weight:700;color:var(--ink);line-height:1.35;margin-top:2px}
+  .team-card-desc{font-size:12.5px;color:var(--muted);line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;
+    -webkit-box-orient:vertical;overflow:hidden}
+
+  @media (max-width:960px){
+    .team-grid{grid-template-columns:repeat(2,1fr)}
+    .team-card.featured{grid-column:span 2}
+    .team-card.featured .team-thumb-box{aspect-ratio:16/10}
+  }
+  @media (max-width:640px){
+    .team-grid{grid-template-columns:1fr}
+    .team-card.featured{grid-column:span 1}
+    .team-thumb-box{aspect-ratio:16/10.5}
+    .team-card.featured .team-thumb-box{aspect-ratio:16/10.5}
+  }
+
+  /* Modal Lightbox for Team Photos */
+  .team-modal-backdrop{position:fixed;inset:0;z-index:1350;background:rgba(10,16,26,.82);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:grid;place-items:center;padding:20px;overflow-y:auto}
+  .team-modal-dialog{width:100%;max-width:960px;background:var(--surface);border:1px solid var(--border);
+    border-radius:22px;box-shadow:0 24px 64px -12px rgba(0,0,0,.5);overflow:hidden;display:flex;flex-direction:column;
+    max-height:92vh;animation:modal-pop .24s cubic-bezier(.2,.8,.2,1)}
+  .team-modal-header{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;
+    justify-content:space-between;gap:16px;background:var(--surface-2)}
+  .team-modal-title-group{flex:1}
+  .team-modal-badges{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+  .team-modal-badges .team-tag-badge{position:static}
+  .team-modal-org{font-size:12px;font-weight:700;color:var(--navy)}
+  [data-theme="dark"] .team-modal-org{color:var(--blue)}
+  .team-modal-date{font-size:11.5px;color:var(--muted)}
+  .team-modal-title{font-size:18px;font-weight:800;color:var(--ink);line-height:1.3}
+
+  .team-modal-body{position:relative;padding:12px 16px;background:#070b12;display:flex;align-items:center;
+    justify-content:center;overflow:hidden;min-height:360px}
+  .team-modal-img-wrap{display:flex;align-items:center;justify-content:center;max-width:100%;max-height:64vh}
+  .team-modal-img{max-width:100%;max-height:64vh;object-fit:contain;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,.6)}
+
+  .team-modal-nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
+    background:rgba(15,23,42,.75);color:#fff;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;
+    cursor:pointer;transition:all .2s ease;z-index:5;backdrop-filter:blur(4px)}
+  .team-modal-nav-btn:hover{background:var(--navy);color:#fff;transform:translateY(-50%) scale(1.08);border-color:transparent}
+  .team-modal-nav-btn.prev{left:16px}
+  .team-modal-nav-btn.next{right:16px}
+
+  .team-modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;align-items:center;
+    justify-content:space-between;gap:18px;background:var(--surface);flex-wrap:wrap}
+  .team-modal-caption{font-size:13.5px;color:var(--body);line-height:1.6;flex:1;min-width:240px}
+  .team-modal-counter{font-size:12.5px;font-weight:700;color:var(--muted);background:var(--surface-2);
+    border:1px solid var(--border);padding:4px 12px;border-radius:16px}
 
   /* ---------- skills & edu (self/skills) ---------- */
   .grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:44px;align-items:start}
@@ -853,6 +948,9 @@
   {{-- Project miniatures (external links) --}}
   @include('project.cards')
 
+  {{-- Team & Culture moments --}}
+  @include('self.team')
+
 @verbatim
   <!-- FOOTER -->
   <footer id="contact">
@@ -1014,6 +1112,9 @@ createApp({
       clock:{time:"--:--",date:""},
       projects: window.PROJECTS,
       certificates: window.CERTIFICATES || [],
+      teamPhotos: window.TEAM_PHOTOS || [],
+      previewTeamPhoto: null,
+      previewTeamPhotoIdx: 0,
       navItems: window.NAV_ITEMS || [],
       operationalModules: window.OPERATIONAL_MODULES || [],
       activeSection: "hero",
@@ -1051,6 +1152,23 @@ createApp({
     closeContactModal(){ this.contactModalOpen = false; },
     openCertPreview(cert){ this.previewCert = cert; },
     closeCertPreview(){ this.previewCert = null; },
+    openTeamPhoto(photo, idx){
+      this.previewTeamPhoto = photo;
+      this.previewTeamPhotoIdx = idx !== undefined ? idx : this.teamPhotos.findIndex(p => p.id === photo.id);
+    },
+    closeTeamPhoto(){
+      this.previewTeamPhoto = null;
+    },
+    nextTeamPhoto(){
+      if (!this.teamPhotos || this.teamPhotos.length === 0) return;
+      this.previewTeamPhotoIdx = (this.previewTeamPhotoIdx + 1) % this.teamPhotos.length;
+      this.previewTeamPhoto = this.teamPhotos[this.previewTeamPhotoIdx];
+    },
+    prevTeamPhoto(){
+      if (!this.teamPhotos || this.teamPhotos.length === 0) return;
+      this.previewTeamPhotoIdx = (this.previewTeamPhotoIdx - 1 + this.teamPhotos.length) % this.teamPhotos.length;
+      this.previewTeamPhoto = this.teamPhotos[this.previewTeamPhotoIdx];
+    },
     countCategory(cat){ return this.certificates.filter(c => c.category === cat).length; },
     toggleCertsExpanded(){
       this.showAllCerts = !this.showAllCerts;
@@ -1284,7 +1402,7 @@ createApp({
       }
     },
     setupScrollSpy(){
-      const sectionIds = ["hero", "exp", "skills", "certifications", "project", "contact"];
+      const sectionIds = ["hero", "exp", "skills", "certifications", "project", "team", "contact"];
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -1326,12 +1444,20 @@ createApp({
     this.updateProjProgress();
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
-        if (this.selectedDetailProj) {
+        if (this.previewTeamPhoto) {
+          this.closeTeamPhoto();
+        } else if (this.selectedDetailProj) {
           this.selectedDetailProj = null;
         } else if (this.previewCert) {
           this.closeCertPreview();
         } else if (this.contactModalOpen) {
           this.closeContactModal();
+        }
+      } else if (this.previewTeamPhoto) {
+        if (e.key === "ArrowLeft") {
+          this.prevTeamPhoto();
+        } else if (e.key === "ArrowRight") {
+          this.nextTeamPhoto();
         }
       }
     });
