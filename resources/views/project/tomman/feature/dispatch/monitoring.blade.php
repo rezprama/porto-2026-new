@@ -159,6 +159,49 @@
   fStatus.addEventListener('change', render);
   fJenis.addEventListener('change', render);
   render();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var tommanMonitoringTour = {
+    id: 'tomman-dispatch-monitoring',
+    steps: [
+      {
+        target: '#submit-form',
+        pos: 'bottom',
+        title: 'Toolbar Pencarian Workorder',
+        desc: 'Cari tiket secara fleksibel berdasarkan No. Tiket, No. SC, Nama Pelanggan, Nomor Telepon/ND, atau nama STO.'
+      },
+      {
+        target: '#fStatus',
+        pos: 'bottom',
+        title: 'Filter Status Order',
+        desc: 'Saring antrean workorder berdasarkan status pengerjaan: Open, Progress, Kendala Teknis, atau Solved.'
+      },
+      {
+        target: '#resultBox',
+        pos: 'bottom',
+        title: 'Hasil Pencarian & Total Ditemukan',
+        desc: 'Menampilkan ringkasan kata kunci pencarian dan total kuantitas order yang cocok dalam sistem.'
+      },
+      {
+        target: '#resultTable table tbody tr:first-child',
+        pos: 'top',
+        title: 'Baris Data Workorder Lapangan',
+        desc: 'Memuat nomor tiket, nama pelanggan, alamat instalasi, umur tiket (Hours), mitra pelaksana, dan timeline penugasan.'
+      },
+      {
+        target: '#resultTable [data-dispatch]:first-child',
+        pos: 'bottom',
+        title: 'Aksi Dispatch & Re-Dispatch',
+        desc: 'Klik tombol <b>Dispatch</b> (atau <b>Re-Dispatch</b>) untuk membuka modal penugasan tiket langsung ke regu teknisi lapangan yang tersedia.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TommanTour.start(tommanMonitoringTour);
+  }, 450);
 </script>
+
+@include('project.tomman.feature.partials.tour-guide')
 </body>
 </html>

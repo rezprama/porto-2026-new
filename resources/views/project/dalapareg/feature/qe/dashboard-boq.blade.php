@@ -199,6 +199,43 @@
 
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeDashboardBoqTour = {
+    id: 'dalapareg-qe-boq',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Dashboard BOQ',
+        desc: 'Saring pantauan BOQ berdasarkan Bulan, Tahun, Distrik, Mitra, dan Project penugasan. Cetak dokumen rekap melalui tombol <b>Print All</b>.'
+      },
+      {
+        target: '.stat-grid',
+        pos: 'bottom',
+        title: 'Ringkasan Anggaran & Volume',
+        desc: 'Metrik agregat memuat jumlah total workorder, total akumulasi nilai BOQ, kuantitas BOQ final, dan tiket yang perlu recheck.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Tabel Detail BOQ Workorder',
+        desc: 'Rincian data per tiket: mitra pelaksana, teknisi, tanggal pengerjaan, status BOQ, nomor tiket, dan nilai total rupiah.'
+      },
+      {
+        target: '#tbody tr:first-child td:last-child',
+        pos: 'left',
+        title: 'Aksi Review & Cetak BOQ',
+        desc: 'Buka rincian volume material KHS yang diajukan serta cetak dokumen resmi Surat Perintah Kerja (SPK) dan BAST.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeDashboardBoqTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

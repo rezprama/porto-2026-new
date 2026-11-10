@@ -350,6 +350,49 @@
 
   renderMatrix();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var nteStockTour = {
+    id: 'dalapareg-nte-stock',
+    steps: [
+      {
+        target: '.card-body .row3',
+        pos: 'bottom',
+        title: 'Filter Evaluasi Stok NTE',
+        desc: 'Saring pantauan stok berdasarkan Regional, metode pengelompokan (per <b>Warehouse</b> atau <b>Status NTE</b>), serta tanggal opname.'
+      },
+      {
+        target: '#catRow',
+        pos: 'bottom',
+        title: 'Filter Kategori Perangkat NTE',
+        desc: 'Centang kategori perangkat spesifik (ONT, STB, kabel drop, roset, dsb) untuk menyaring matriks inventaris gudang.'
+      },
+      {
+        target: '#statGrid',
+        pos: 'bottom',
+        title: 'Kartu Statistik Rekap Inventaris',
+        desc: 'Menampilkan akumulasi fisik perangkat: Total Unit, stok Baik/Siap Pakai, Rusak/Dismantle, dan selisih opname fisik.'
+      },
+      {
+        target: 'table.matrix thead',
+        pos: 'bottom',
+        title: 'Matriks Sebaran Stok Gudang / Status',
+        desc: 'Tabel silang menampilkan jumlah fisik barang per warehouse dan kategori status perangkat telekomunikasi.'
+      },
+      {
+        target: '#matrixBody .cell-btn:not(.zero)',
+        pos: 'top',
+        title: 'Rincian Serial Number (SN) Unit',
+        desc: 'Klik angka stok pada sel tabel untuk membuka pop-up daftar nomor seri (SN) perangkat, merk/tipe ONT, dan status garansi.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(nteStockTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

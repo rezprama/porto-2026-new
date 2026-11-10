@@ -191,6 +191,43 @@
     fillQueue();
     toast(w.tiket + ' di-dispatch ke ' + w.tim + ' dan dikirim ke group Telegram sektor.');
   });
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var tommanAssuranceTour = {
+    id: 'tomman-assurance',
+    steps: [
+      {
+        target: '.nav-tabs.ajax',
+        pos: 'bottom',
+        title: 'Tab Search & Dispatch Manual',
+        desc: 'Beralih antara tab <b>Search</b> (pencarian gangguan aktif) dan <b>Dispatch Manual</b> (antrean penugasan tiket langsung ke regu teknisi).'
+      },
+      {
+        target: '#submit-form',
+        pos: 'bottom',
+        title: 'Pencarian Tiket Gangguan',
+        desc: 'Cari tiket gangguan secara instan berdasarkan No. Tiket, No. Telepon, No. Internet pelanggan, atau nama pelanggan.'
+      },
+      {
+        target: '#resultTable',
+        pos: 'top',
+        title: 'Tabel Gangguan & Pengukuran Fisik',
+        desc: 'Memuat data pelanggan, status redaman port OLT/ODP, status koneksi (Online/LOS), penyebab gangguan, dan umur tiket.'
+      },
+      {
+        target: '.nav-tabs.ajax li:last-child',
+        pos: 'bottom',
+        title: 'Formulir Dispatch Manual',
+        desc: 'Pilih tiket dalam antrean undispatch dan tentukan regu teknisi yang bertugas untuk mengirimkan penugasan otomatis ke grup Telegram sektor.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TommanTour.start(tommanAssuranceTour);
+  }, 450);
 </script>
+
+@include('project.tomman.feature.partials.tour-guide')
 </body>
 </html>

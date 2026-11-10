@@ -154,6 +154,43 @@
   });
   [pStart, pEnd, pMitra].forEach(function(el){ el.addEventListener('change', render); });
   render();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var tommanLeaderboardsTour = {
+    id: 'tomman-leaderboards',
+    steps: [
+      {
+        target: '#squadTabs',
+        pos: 'bottom',
+        title: 'Tab Klasemen Squad Teknisi',
+        desc: 'Beralih antara squad operasional: ALPHA.PROV (Provisioning), ALPHA.ASR (Assurance), DELTA.A (Inner Maintenance), dan DELTA.B (Outer Maintenance).'
+      },
+      {
+        target: '.period',
+        pos: 'bottom',
+        title: 'Filter Rentang Tanggal & Mitra',
+        desc: 'Tentukan rentang tanggal evaluasi produktivitas poin serta filter per mitra kerja telekomunikasi.'
+      },
+      {
+        target: '#rankTable thead',
+        pos: 'bottom',
+        title: 'Tabel Peringkat Warrior & Skoring Poin',
+        desc: 'Menampilkan NIK, nama teknisi (Warrior), jumlah gangguan ditangani vs diselesaikan (UP), serta akumulasi poin insentif per kategori.'
+      },
+      {
+        target: '#rankBody tr:first-child',
+        pos: 'top',
+        title: 'Juara Peringkat Pertama (Rank 1)',
+        desc: 'Baris berlatar kuning menyoroti teknisi dengan perolehan poin tertinggi pada squad terpilih.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TommanTour.start(tommanLeaderboardsTour);
+  }, 450);
 </script>
+
+@include('project.tomman.feature.partials.tour-guide')
 </body>
 </html>

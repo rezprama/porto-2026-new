@@ -343,6 +343,49 @@
   renderBoard();
   renderPeriods();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeCapexTour = {
+    id: 'dalapareg-qe-capex',
+    steps: [
+      {
+        target: '.tabs',
+        pos: 'bottom',
+        title: 'Tab Wallboard & Input Anggaran',
+        desc: 'Beralih antara tab <b>Wallboard</b> (pemantauan serapan dana per triwulan) dan <b>Input Data</b> (penambahan target project alokasi CAPEX).'
+      },
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Periode & Project',
+        desc: 'Saring evaluasi anggaran berdasarkan Tahun, Triwulan (TW1 hingga TW4), dan nama project CAPEX yang berjalan.'
+      },
+      {
+        target: '#statGrid',
+        pos: 'bottom',
+        title: 'Ringkasan Statistik Keuangan',
+        desc: 'Menampilkan total anggaran NET, realisasi persetujuan Team Leader (TL) & QE, serta sisa saldo dana CAPEX.'
+      },
+      {
+        target: '.table-scroll table thead',
+        pos: 'bottom',
+        title: 'Matriks Serapan Distrik & % Penyerapan',
+        desc: 'Tabel memantau performa serapan anggaran per distrik beserta progress bar persentase serapan terhadap target NET.'
+      },
+      {
+        target: '#tbody tr:first-child .drill',
+        pos: 'bottom',
+        title: 'Drill-down Rincian Project',
+        desc: 'Klik nama distrik pada baris tabel untuk melihat rincian alokasi per project pada periode triwulan yang dipilih.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeCapexTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

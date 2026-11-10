@@ -448,6 +448,49 @@
   renderTable();
   renderKhs();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var assuranceRekonTour = {
+    id: 'dalapareg-assurance-rekon',
+    steps: [
+      {
+        target: '.tabs',
+        pos: 'bottom',
+        title: '3 Tab Pengelolaan Material Assurance',
+        desc: 'Beralih antara tab <b>Data BOQ</b> (rekap pengajuan berkas), <b>Form Input Data</b> (unggah berkas Excel), dan <b>Form KHS</b> (standar harga satuan pekerjaan/material).'
+      },
+      {
+        target: '#tabBoq .row3:first-child',
+        pos: 'bottom',
+        title: 'Filter Tipe Pekerjaan & Wilayah',
+        desc: 'Saring berkas berdasarkan tipe proyek (Assurance, CCAN, WANOLO, Remo Underspec, SQM), Regional (5, 6, 7), Witel, serta periode Bulan & Tahun.'
+      },
+      {
+        target: '#statGrid',
+        pos: 'bottom',
+        title: 'Kartu Ringkasan Status Validasi',
+        desc: 'Menampilkan metrik agregat: Total Berkas, Berkas Approved (disetujui), Berkas Rejected, serta estimasi nilai rekonsiliasi anggaran.'
+      },
+      {
+        target: '#tabBoq table thead',
+        pos: 'bottom',
+        title: 'Tabel Log Pengajuan BOQ Material',
+        desc: 'Mencatat nama file Excel, tanggal pengunggahan, pengirim (submitted by), status verifikasi, dan tombol aksi periksa.'
+      },
+      {
+        target: '#tbody tr:first-child td:last-child',
+        pos: 'left',
+        title: 'Aksi Verifikasi & Download Berkas',
+        desc: 'Klik tombol <b>Detail</b> untuk meninjau kecocokan material per tiket gangguan, atau unduh berkas lampiran pendukung.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(assuranceRekonTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

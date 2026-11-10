@@ -399,6 +399,43 @@
 
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeApprovalTlTour = {
+    id: 'dalapareg-qe-app-tl',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Antrean Verifikasi TL',
+        desc: 'Saring daftar persetujuan Team Leader berdasarkan Bulan, Tahun, Distrik, Mitra kerja, dan status pekerjaan.'
+      },
+      {
+        target: '.table-toolbar',
+        pos: 'bottom',
+        title: 'Pencarian Tiket & Teknisi',
+        desc: 'Cari cepat berdasarkan nomor tiket, headline pekerjaan, atau nama teknisi lapangan yang menangani tiket.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Tabel Workorder Siap Verifikasi',
+        desc: 'Menampilkan data tiket, sub-pekerjaan (LOP), tanggal submit teknisi, status, dan riwayat pembaruan TL.'
+      },
+      {
+        target: '#tbody tr:first-child td:last-child',
+        pos: 'left',
+        title: 'Aksi Approval & Pending TL',
+        desc: 'Klik tombol <b>Approval</b> untuk memeriksa volume BOQ dan bukti evidens foto. Berikan <b>Approve</b> atau kembalikan dengan <b>Pending</b> jika ada temuan.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeApprovalTlTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

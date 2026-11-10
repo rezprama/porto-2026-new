@@ -186,6 +186,49 @@
   fSektor.addEventListener('change', render);
   fDate.addEventListener('change', render);
   render();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var tommanMatrixTour = {
+    id: 'tomman-dispatch-matrix',
+    steps: [
+      {
+        target: '.navbar',
+        pos: 'bottom',
+        title: 'Navigasi Menu TOMMAN',
+        desc: 'Akses modul inti TOMMAN: <b>Workorder</b> (daftar tugas lapangan), <b>Assurance</b> (rekap gangguan), <b>Matrix</b> (sebaran WO per tim), <b>Ticketing</b>, <b>Leaderboards</b>, dan <b>Telegram Broadcast</b>.'
+      },
+      {
+        target: '#filterForm',
+        pos: 'bottom',
+        title: 'Filter Sektor & Tanggal Dispatch',
+        desc: 'Saring beban kerja berdasarkan sektor operasional (ASR, PROV, INNER, OUTER, atau per cluster) serta tanggal penugasan.'
+      },
+      {
+        target: '#legend',
+        pos: 'bottom',
+        title: 'Legenda Status Tiket & Laporan',
+        desc: 'Panduan kode warna laporan teknisi: Hijau (Solved/Closed), Biru (Proses), Oranye (Kendala), dan Merah (Kritis/Lewat SLA).'
+      },
+      {
+        target: '#matrix .panel:first-child',
+        pos: 'top',
+        title: 'Tabel Matriks Produktivitas Tim',
+        desc: 'Memantau kinerja setiap regu teknisi: Target Man-Hours (Target MH), jumlah WO, status No Update, Progress, Kendala, UP (Selesai), dan persentase produktivitas (% PROD).'
+      },
+      {
+        target: '#matrix .panel:first-child .list-cell .label:first-child',
+        pos: 'top',
+        title: 'Interaktif: Popover Detail Tiket',
+        desc: 'Setiap badge tiket memuat umur order dalam jam (Hours). Arahkan kursor atau klik badge untuk melihat alur open order, waktu dispatch, dan catatan lapangan teknisi.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TommanTour.start(tommanMatrixTour);
+  }, 450);
 </script>
+
+@include('project.tomman.feature.partials.tour-guide')
 </body>
 </html>

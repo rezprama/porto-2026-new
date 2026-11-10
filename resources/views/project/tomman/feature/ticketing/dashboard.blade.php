@@ -143,6 +143,43 @@
       : '<div class="alert alert-warning" style="margin:0">Tidak ada tiket pada rentang ini.</div>';
     openModal('#listModal');
   });
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var tommanTicketingTour = {
+    id: 'tomman-ticketing',
+    steps: [
+      {
+        target: '#slaTable thead',
+        pos: 'bottom',
+        title: 'Tabel Distribusi Umur Tiket (SLA)',
+        desc: 'Matriks membagi tiket ke dalam interval pengerjaan: Hijau (0-6 jam), Oranye (6-12 jam), dan Merah (>12 hingga >24 jam).'
+      },
+      {
+        target: '#slaTable th.redx',
+        pos: 'bottom',
+        title: 'Tiket Kritis & Melewati SLA',
+        desc: 'Kolom merah menyoroti tiket yang telah berumur lebih dari 24 jam dan memerlukan eskalasi penanganan prioritas.'
+      },
+      {
+        target: '#slaBody tr:nth-last-child(2)',
+        pos: 'top',
+        title: 'Baris Undispatch',
+        desc: 'Menghitung kuantitas tiket masuk yang belum ditetapkan ke regu teknisi mana pun.'
+      },
+      {
+        target: '#slaBody td.center a:first-child',
+        pos: 'top',
+        title: 'Interaktif: Drill-down Tiket',
+        desc: 'Klik angka pada sel mana pun untuk membuka dialog daftar tiket lengkap beserta nama pelanggan, nomor ND, STO, tim, dan umur order.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TommanTour.start(tommanTicketingTour);
+  }, 450);
 </script>
+
+@include('project.tomman.feature.partials.tour-guide')
 </body>
 </html>

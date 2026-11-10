@@ -341,6 +341,37 @@
 
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeApprovalEvidenceTour = {
+    id: 'dalapareg-qe-app-evidence',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Status Approval Evidence',
+        desc: 'Saring verifikasi berdasarkan tahapan status (APPROVE TL, PENDING TL, APPROVE QE, PENDING QE), Distrik, Mitra, dan rentang tanggal.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Matriks Tiket & Nilai BOQ',
+        desc: 'Menampilkan headline pekerjaan, nomor tiket, LOP, mitra pelaksana, tanggal update berjenjang, dan akumulasi total rupiah BOQ.'
+      },
+      {
+        target: '#tbody tr:first-child td:last-child',
+        pos: 'left',
+        title: 'Aksi Periksa Bukti Foto Evidens',
+        desc: 'Buka tombol aksi untuk meninjau galeri lightbox bukti foto lapangan sebelum, saat, dan sesudah pengerjaan serta riwayat revisi.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeApprovalEvidenceTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

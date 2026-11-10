@@ -447,6 +447,55 @@
   renderTable();
   renderChart();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var damanMappingTour = {
+    id: 'dalapareg-daman-mapping',
+    steps: [
+      {
+        target: '.sidebar nav',
+        pos: 'right',
+        title: 'Modul Data Management',
+        desc: 'Menu Data Management memvalidasi integritas data jaringan fiber optik, memetakan relasi port OLT terhadap persebaran perangkat ODP di lapangan.'
+      },
+      {
+        target: '#fType',
+        pos: 'bottom',
+        title: 'Filter Hirarki Wilayah',
+        desc: 'Pilih tingkatan agregasi data: <b>Nasional</b>, <b>Regional</b> (Reg 5, 6, 7), <b>Witel</b>, atau level <b>STO</b> untuk mempersempit jangkauan rekap.'
+      },
+      {
+        target: '.card:nth-child(2) table thead',
+        pos: 'bottom',
+        title: 'Tabel Rekapitulasi Validasi Port OLT',
+        desc: 'Merangkum OLT Total, Slot Total, Port Total, Port Valid, Port Tidak Valid, Port Cek Lapangan, Port Gendong, dan persentase <b>% Valid</b>.'
+      },
+      {
+        target: '#tbody tr:first-child .drill',
+        pos: 'bottom',
+        title: 'Drill-down Hirarki Interaktif',
+        desc: 'Klik nama wilayah (misal <b>REGIONAL 6</b>) untuk melakukan drill-down langsung ke daftar Witel dan STO di bawahnya.'
+      },
+      {
+        target: '#tbody tr:first-child .num-cell:not(.zero)',
+        pos: 'top',
+        title: 'Rincian Detail Port & ODP Terhubung',
+        desc: 'Klik angka port pada sel tabel untuk membuka dialog detail OLT, nomor slot/port, ODP yang terhubung, ONT aktif, dan tanggal pengecekan terakhir.'
+      },
+      {
+        target: '.card:nth-child(3) .card-head',
+        pos: 'bottom',
+        title: 'Grafik Tren Perkembangan Validasi',
+        desc: 'Visualisasi tren bulanan (6 atau 12 bulan terakhir) berdasarkan sebaran area regional atau kategori status port (Valid, Invalid, Cek Lapangan, Gendong).'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(damanMappingTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

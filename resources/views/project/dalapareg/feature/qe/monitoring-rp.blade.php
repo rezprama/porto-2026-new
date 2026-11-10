@@ -212,6 +212,43 @@
 
   renderMatrix();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeMonitoringRpTour = {
+    id: 'dalapareg-qe-monitoring-rp',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Evaluasi Anggaran',
+        desc: 'Saring pantauan dana berdasarkan kriteria basis, nama project, dan periode tanggal pelaksanaan.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Matriks Nilai Rupiah Tiket',
+        desc: 'Memantau akumulasi rupiah BOQ pada level Team Leader (TL) dan Quality Engineer (AMQE) untuk status <b>NEED APPROVE</b> vs <b>DONE</b>.'
+      },
+      {
+        target: '#matrixBody tr:first-child .row-link',
+        pos: 'bottom',
+        title: 'Drill-down Nominal STO',
+        desc: 'Klik nama distrik untuk melihat rincian alokasi dan penyerapan dana rupiah per masing-masing STO.'
+      },
+      {
+        target: '#matrixBody tr:first-child .drill:not(.zero)',
+        pos: 'top',
+        title: 'Rincian Nilai Material & Jasa',
+        desc: 'Klik nominal rupiah untuk membuka dialog rincian nilai material, biaya jasa teknisi, dan total BOQ per tiket workorder.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeMonitoringRpTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

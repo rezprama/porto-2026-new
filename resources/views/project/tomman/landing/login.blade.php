@@ -102,6 +102,43 @@
     errNote.textContent = 'Login atau password salah.';
     errNote.hidden = false;
   });
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var tommanLoginTour = {
+    id: 'tomman-login',
+    steps: [
+      {
+        target: '.brand',
+        pos: 'top',
+        title: 'Aplikasi TOMMAN Operation',
+        desc: 'TOMMAN (Total Operation & Maintenance Management) adalah platform dispatching tiket, monitoring kinerja teknisi lapangan, dan rekap assurance jaringan.'
+      },
+      {
+        target: '#input-login',
+        pos: 'top',
+        title: 'Input Username / NIK',
+        desc: 'Masukkan username atau NIK akun operasional Anda. Untuk mencoba simulasi sistem demo, gunakan akun <b>1111</b>.'
+      },
+      {
+        target: '#input-password',
+        pos: 'bottom',
+        title: 'Kata Sandi Akun',
+        desc: 'Masukkan password akun dinas Anda (akun demo: <b>1111</b>).'
+      },
+      {
+        target: 'button[type="submit"]',
+        pos: 'bottom',
+        title: 'Tombol Masuk Sistem',
+        desc: 'Klik tombol <b>Login</b> untuk masuk langsung ke dashboard matriks operasional TOMMAN.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TommanTour.start(tommanLoginTour);
+  }, 450);
 </script>
+
+@include('project.tomman.feature.partials.tour-guide')
 </body>
 </html>

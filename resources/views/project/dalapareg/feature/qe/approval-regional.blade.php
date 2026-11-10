@@ -282,6 +282,43 @@
 
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeApprovalRegionalTour = {
+    id: 'dalapareg-qe-app-regional',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Antrean Approval Regional',
+        desc: 'Saring workorder yang siap diverifikasi di level Regional berdasarkan Distrik, Mitra kerja, dan tanggal penyelesaian teknisi.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Workorder Terverifikasi TL & QE',
+        desc: 'Menampilkan daftar tiket yang telah sukses melewati tahapan review Team Leader dan Quality Engineer, siap untuk final approval.'
+      },
+      {
+        target: '#checkAll',
+        pos: 'bottom',
+        title: 'Seleksi Cepat Seluruh Workorder',
+        desc: 'Centang kotak ini untuk memilih seluruh tiket pada halaman aktif guna memproses persetujuan secara simultan.'
+      },
+      {
+        target: '#approveSelected',
+        pos: 'top',
+        title: 'Eksekusi Approve Regional',
+        desc: 'Klik tombol ini untuk mengonfirmasi persetujuan tingkat regional terhadap seluruh tiket terpilih dalam satu klik.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeApprovalRegionalTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

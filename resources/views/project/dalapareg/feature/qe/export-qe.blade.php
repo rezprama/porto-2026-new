@@ -216,6 +216,37 @@
 
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeExportTour = {
+    id: 'dalapareg-qe-export',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Ekspor Data Nilai Anggaran',
+        desc: 'Tentukan kriteria penarikan data berdasarkan basis klasifikasi, bulan, dan tahun pelaksanaan proyek.'
+      },
+      {
+        target: '#downloadBtn',
+        pos: 'bottom',
+        title: 'Unduh Rekapitulasi Anggaran (Excel)',
+        desc: 'Klik tombol ini untuk mengekspor seluruh tabel nilai anggaran proyek New Project ke dalam berkas spreadsheet.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Tabel Master Nilai Anggaran',
+        desc: 'Menampilkan data lengkap: nama project, distrik, STO, nilai material, nilai jasa, total rupiah, dan status approval TL/QE.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeExportTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

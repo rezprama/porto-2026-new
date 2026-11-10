@@ -286,6 +286,43 @@
 
   renderTable();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeListingTour = {
+    id: 'dalapareg-qe-listing',
+    steps: [
+      {
+        target: '#addBtn',
+        pos: 'bottom',
+        title: 'Tambah Listing Pekerjaan',
+        desc: 'Klik tombol ini untuk mendaftarkan workorder baru: pilih distrik, STO, mitra, tim teknisi, serta deskripsi pekerjaan.'
+      },
+      {
+        target: '.table-toolbar',
+        pos: 'bottom',
+        title: 'Filter & Pencarian Listing',
+        desc: 'Saring antrean berdasarkan Distrik, Project, jumlah baris per halaman, atau cari instan via nama pekerjaan dan tiket.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Direktori Listing Pekerjaan',
+        desc: 'Memuat nama pekerjaan, tanggal listing terbit, tim mitra penanggung jawab, pembuat list, dan status terkini.'
+      },
+      {
+        target: '#tbody tr:first-child td:last-child',
+        pos: 'left',
+        title: 'Aksi Detail & Upload Berkas',
+        desc: 'Klik tombol <b>Detail</b> untuk meninjau rancangan BOQ, foto evidens fisik, serta melampirkan berkas BA pengerjaan.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeListingTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

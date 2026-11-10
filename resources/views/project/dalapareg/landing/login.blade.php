@@ -166,6 +166,49 @@
     e.preventDefault();
     showErr('Ini tampilan demo — pendaftaran akun tidak terhubung ke server sungguhan.');
   });
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var dalapaLoginTour = {
+    id: 'dalapareg-login',
+    steps: [
+      {
+        target: '#username',
+        pos: 'top',
+        title: 'Akun / NIK Pengguna',
+        desc: 'Masukkan NIK atau email akun Anda. Untuk mencoba simulasi sistem demo, gunakan akun demo <b>1111</b>.'
+      },
+      {
+        target: '.pw-wrap',
+        pos: 'top',
+        title: 'Kata Sandi & Toggle Intip',
+        desc: 'Masukkan password akun (demo: <b>1111</b>). Klik ikon mata di sebelah kanan untuk memeriksa ketikan sandi.'
+      },
+      {
+        target: '#authType',
+        pos: 'bottom',
+        title: 'Tipe Autentikasi',
+        desc: 'Pilih jenis autentikasi kredensial: <b>USER ACCOUNT</b> (database lokal aplikasi) atau <b>LDAP</b> (Single Sign-On korporat).'
+      },
+      {
+        target: '.captcha',
+        pos: 'bottom',
+        title: 'Verifikasi Keamanan reCAPTCHA',
+        desc: 'Centang kotak verifikasi <b>Saya bukan robot</b> untuk memenuhi validasi keamanan sebelum login.'
+      },
+      {
+        target: '.btn-login',
+        pos: 'bottom',
+        title: 'Tombol Masuk Sistem',
+        desc: 'Tekan tombol <b>Login</b> untuk masuk langsung ke dashboard operasional <b>Map Alpro</b> DALAPA Regional.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(dalapaLoginTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

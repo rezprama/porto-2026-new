@@ -213,6 +213,43 @@
 
   renderMatrix();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeMonitoringTour = {
+    id: 'dalapareg-qe-monitoring',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Wilayah & Rentang Waktu',
+        desc: 'Saring pantauan project berdasarkan Distrik, Project spesifik, serta rentang tanggal pelaksanaan pengerjaan.'
+      },
+      {
+        target: 'table thead',
+        pos: 'bottom',
+        title: 'Matriks Tahapan Siklus Workorder',
+        desc: 'Merangkum kuantitas tiket: Total, Listing, Progress, Complete Teknisi, Pending, serta tahapan Approval TL dan QE.'
+      },
+      {
+        target: '#matrixBody tr:first-child .row-link',
+        pos: 'bottom',
+        title: 'Drill-down ke Level STO',
+        desc: 'Klik nama distrik untuk melakukan ekspansi drill-down ke rincian rekapitulasi per Sentral Telepon Otomat (STO).'
+      },
+      {
+        target: '#matrixBody tr:first-child .drill:not(.zero)',
+        pos: 'top',
+        title: 'Daftar Detail Tiket Workorder',
+        desc: 'Klik angka biru pada tabel untuk membuka pop-up daftar tiket workorder, status pengerjaan, nama mitra, dan teknisi pelaksana.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeMonitoringTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

@@ -169,6 +169,49 @@
     document.querySelectorAll('#groups input:checked').forEach(function(c){ c.checked = false; });
     refreshNote();
   });
+
+  /* ---------- tour guide ---------- */
+  var tommanTelegramTour = {
+    id: 'tomman-telegram',
+    steps: [
+      {
+        target: '#groups',
+        pos: 'right',
+        title: 'Pemilihan Grup Telegram Target',
+        desc: 'Pilih satu atau beberapa grup Telegram sektor maupun channel eskalasi ops room yang akan menerima pesan siaran.'
+      },
+      {
+        target: '.tpl-btns',
+        pos: 'bottom',
+        title: 'Template Pesan Siaran Cepat',
+        desc: 'Gunakan template siap pakai untuk Dispatch WO harian, Eskalasi tiket melewati SLA, atau rekap Absen Pagi regu lapangan.'
+      },
+      {
+        target: '#message',
+        pos: 'top',
+        title: 'Editor Pesan Broadcast',
+        desc: 'Ketik pesan atau modifikasi draft template telegram yang akan disiarkan kepada personil atau grup koordinasi lapangan.'
+      },
+      {
+        target: '#btnKirim',
+        pos: 'top',
+        title: 'Kirim Broadcast ke Bot Telegram',
+        desc: 'Klik tombol ini untuk mengeksekusi pengiriman pesan siaran serentak ke API Telegram Bot.'
+      },
+      {
+        target: '#log',
+        pos: 'left',
+        title: 'Log Riwayat Pengiriman Bot',
+        desc: 'Pantau status transmisi API (200 OK), timestamp WITA, target channel, dan cuplikan pesan yang berhasil dikirimkan.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    TommanTour.start(tommanTelegramTour);
+  }, 450);
 </script>
+
+@include('project.tomman.feature.partials.tour-guide')
 </body>
 </html>

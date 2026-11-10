@@ -426,6 +426,61 @@
 
   render();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var dalapaMapTour = {
+    id: 'dalapareg-peta-alpro',
+    steps: [
+      {
+        target: '.sidebar nav',
+        pos: 'right',
+        title: 'Navigasi Menu DALAPA Regional',
+        desc: 'Akses seluruh modul operasional DALAPA Regional: Map Alpro, Data Management (Mapping OLT-ODP), Rekon Material Assurance, QE New Project, dan Stock Opname NTE.'
+      },
+      {
+        target: '#settingBtn',
+        pos: 'bottom',
+        title: 'Tombol Setting Peta & Layer Alpro',
+        desc: 'Buka panel pengaturan layer untuk mengaktifkan Data ODP, ODP Komersial, Heatmap Gangguan INC, Heatmap Underspec, Survey Tiang, serta filter wilayah & STO.'
+      },
+      {
+        target: '#syncBtn',
+        pos: 'bottom',
+        title: 'Informasi Sinkronisasi Tiket Gangguan',
+        desc: 'Klik untuk memunculkan panel status sinkronisasi integrasi tiket gangguan (INC) yang telah terpetakan ke dalam koordinat heatmap secara real-time.'
+      },
+      {
+        target: '#baseBtn',
+        pos: 'bottom',
+        title: 'Ganti Layer Peta (Satelit / Normal)',
+        desc: 'Beralih tampilan antara peta jalan standar (OpenStreetMap) dan citra satelit resolusi tinggi (Esri World Imagery).'
+      },
+      {
+        target: '.ov-search',
+        pos: 'bottom',
+        title: 'Pencarian Koordinat & Nama ODP',
+        desc: 'Cari aset jaringan berdasarkan nama ODP (misal: <code>ODP-BPN-014</code>) atau masukkan koordinat lintang & bujur untuk langsung zoom ke lokasi perangkat.'
+      },
+      {
+        target: '.ov-legend',
+        pos: 'top',
+        title: 'Legenda Warna Okupansi Port ODP',
+        desc: 'Panduan arti warna marker ODP: dari kosong (hitam), kapasitas terisi rendah (hijau 10%), okupansi menengah (kuning/oranye), hingga penuh (merah/marun).'
+      },
+      {
+        target: '.topbar',
+        pos: 'bottom',
+        title: 'Bar Kontrol & Jam Operasional WITA',
+        desc: 'Pantau jam operasional lokal regional (WITA Balikpapan) dan akses informasi akun dinas yang sedang aktif.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(dalapaMapTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>

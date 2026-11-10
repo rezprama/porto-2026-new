@@ -324,6 +324,37 @@
 
   renderMatrix();
   applyLang();
+
+  /* ---------- Interactive Tour Guide ---------- */
+  var qeApprovalQeTour = {
+    id: 'dalapareg-qe-app-qe',
+    steps: [
+      {
+        target: '.filter-bar',
+        pos: 'bottom',
+        title: 'Filter Evaluasi Quality Engineer',
+        desc: 'Saring antrean berdasarkan Bulan, Tahun, Distrik, Mitra, dan Project. Tersedia juga tombol <b>Print All</b> untuk mencetak rekapitulasi.'
+      },
+      {
+        target: 'table.khs thead',
+        pos: 'bottom',
+        title: 'Matriks BOQ KHS per Workorder',
+        desc: 'Tabel lintas kolom memetakan volume material KHS terhadap setiap tiket workorder. Kolom hijau menandakan disetujui QE, kuning menunggu keputusan.'
+      },
+      {
+        target: '.act-bar',
+        pos: 'top',
+        title: 'Tombol Aksi Massal (Batch Action)',
+        desc: 'Gunakan tombol <b>Approve</b> untuk menyetujui seluruh workorder yang valid, atau <b>Pending</b> untuk mengembalikan perbaikan secara massal.'
+      }
+    ]
+  };
+
+  setTimeout(function(){
+    DalapaTour.start(qeApprovalQeTour);
+  }, 450);
 </script>
+
+@include('project.dalapareg.feature.partials.tour-guide')
 </body>
 </html>
